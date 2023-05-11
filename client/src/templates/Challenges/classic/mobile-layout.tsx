@@ -1,7 +1,7 @@
 import { TabPane, Tabs } from '@freecodecamp/react-bootstrap';
 import i18next from 'i18next';
 import React, { Component, ReactElement } from 'react';
-
+import { TOOL_PANEL_HEIGHT } from '../../../../../config/misc';
 import ToolPanel from '../components/tool-panel';
 import EditorTabs from './editor-tabs';
 
@@ -14,6 +14,7 @@ interface MobileLayoutProps {
   instructions: JSX.Element;
   notes: ReactElement;
   preview: JSX.Element;
+  updateUsingKeyboardInTablist: (arg0: boolean) => void;
   testOutput: JSX.Element;
   videoUrl: string;
   usesMultifileEditor: boolean;
@@ -34,17 +35,66 @@ interface MobileLayoutState {
 class MobileLayout extends Component<MobileLayoutProps, MobileLayoutState> {
   static displayName: string;
 
+  #toolPanelGroup!: HTMLElement;
+
   state: MobileLayoutState = {
     currentTab: this.props.hasEditableBoundaries ? Tab.Editor : Tab.Instructions
   };
 
-  switchTab = (tab: Tab) => {
+  switchTab = (tab: Tab): void => {
     this.setState({
       currentTab: tab
     });
   };
 
-  render() {
+  // Keep the tool panel visible when mobile address bar and/or keyboard are in view.
+  setToolPanelPosition = () => {
+    if (!this.#toolPanelGroup) return;
+    // Detect the appearance of the mobile virtual keyboard.
+    if (visualViewport?.height && window.innerHeight > visualViewport.height) {
+      setTimeout(() => {
+        if (visualViewport?.height !== undefined) {
+          this.#toolPanelGroup.style.top =
+            String(visualViewport.height - TOOL_PANEL_HEIGHT) + 'px';
+        }
+      }, 200);
+    } else {
+      if (visualViewport?.height !== undefined) {
+        this.#toolPanelGroup.style.top =
+          String(window.innerHeight - TOOL_PANEL_HEIGHT) + 'px';
+      }
+    }
+  };
+
+  isMobileDeviceWithToolPanel = () =>
+    this.#toolPanelGroup && /iPhone|Android.+Mobile/.exec(navigator.userAgent);
+
+  componentDidMount(): void {
+    this.#toolPanelGroup = (
+      document.getElementsByClassName(
+        'tool-panel-group-mobile'
+      ) as HTMLCollectionOf<HTMLElement>
+    )[0];
+
+    if (this.isMobileDeviceWithToolPanel()) {
+      visualViewport?.addEventListener('resize', this.setToolPanelPosition);
+      this.#toolPanelGroup.style.top =
+        String(window.innerHeight - TOOL_PANEL_HEIGHT) + 'px';
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (this.isMobileDeviceWithToolPanel()) {
+      visualViewport?.removeEventListener('resize', this.setToolPanelPosition);
+      document.documentElement.style.height = '100%';
+    }
+  }
+
+  handleKeyDown = (): void => this.props.updateUsingKeyboardInTablist(true);
+
+  handleClick = (): void => this.props.updateUsingKeyboardInTablist(false);
+
+  render(): JSX.Element {
     const { currentTab } = this.state;
     const {
       hasEditableBoundaries,
@@ -73,13 +123,17 @@ class MobileLayout extends Component<MobileLayoutProps, MobileLayoutState> {
         <Tabs
           activeKey={currentTab}
           defaultActiveKey={currentTab}
-          id='challenge-page-tabs'
+          id='mobile-layout'
+          onKeyDown={this.handleKeyDown}
+          onMouseDown={this.handleClick}
           onSelect={this.switchTab}
+          onTouchStart={this.handleClick}
         >
           {!hasEditableBoundaries && (
             <TabPane
               eventKey={Tab.Instructions}
-              title={i18next.t('learn.editor-tabs.info')}
+              title={i18next.t('learn.editor-tabs.instructions')}
+              tabIndex={0}
             >
               {instructions}
             </TabPane>
@@ -94,7 +148,7 @@ class MobileLayout extends Component<MobileLayoutProps, MobileLayoutState> {
           </TabPane>
           <TabPane
             eventKey={Tab.Console}
-            title={i18next.t('learn.editor-tabs.tests')}
+            title={i18next.t('learn.editor-tabs.console')}
             {...editorTabPaneProps}
           >
             {testOutput}
@@ -115,8 +169,14 @@ class MobileLayout extends Component<MobileLayoutProps, MobileLayoutState> {
               {preview}
             </TabPane>
           )}
+          {!hasEditableBoundaries && (
+            <ToolPanel
+              guideUrl={guideUrl}
+              isMobile={true}
+              videoUrl={videoUrl}
+            />
+          )}
         </Tabs>
-        <ToolPanel guideUrl={guideUrl} isMobile={true} videoUrl={videoUrl} />
       </>
     );
   }

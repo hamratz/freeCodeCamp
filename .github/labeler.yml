@@ -9,6 +9,7 @@
 
 'platform: api':
   - api-server/**/*
+  - api/**/*
 
 'scope: tools/scripts':
   - cypress/**/*
@@ -22,4 +23,3 @@
   - client/i18n/**/*
   - config/crowdin/**/*
   - config/i18n/**/*
-  - tools/crowdin/**/*

@@ -2,9 +2,12 @@ import debugFactory from 'debug';
 import dedent from 'dedent';
 import { body } from 'express-validator';
 import { pick } from 'lodash';
-import { Observable } from 'rx';
 
-import { fixCompletedChallengeItem } from '../../common/utils';
+import {
+  fixCompletedChallengeItem,
+  fixPartiallyCompletedChallengeItem,
+  fixSavedChallengeItem
+} from '../../common/utils';
 import { removeCookies } from '../utils/getSetAccessToken';
 import { ifNoUser401, ifNoUserRedirectHome } from '../utils/middleware';
 import {
@@ -14,6 +17,10 @@ import {
 } from '../utils/publicUserProps';
 import { getRedirectParams } from '../utils/redirection';
 import { trimTags } from '../utils/validators';
+import {
+  createDeleteUserToken,
+  encodeUserToken
+} from '../middlewares/user-token';
 
 const log = debugFactory('fcc:boot:user');
 const sendNonUserToHome = ifNoUserRedirectHome();
@@ -24,16 +31,19 @@ function bootUser(app) {
   const getSessionUser = createReadSessionUser(app);
   const postReportUserProfile = createPostReportUserProfile(app);
   const postDeleteAccount = createPostDeleteAccount(app);
-  const postWebhookToken = createPostWebhookToken(app);
-  const deleteWebhookToken = createDeleteWebhookToken(app);
+  const postUserToken = createPostUserToken(app);
+  const deleteUserToken = createDeleteUserToken(app);
 
   api.get('/account', sendNonUserToHome, getAccount);
   api.get('/account/unlink/:social', sendNonUserToHome, getUnlinkSocial);
   api.get('/user/get-session-user', getSessionUser);
-
-  api.post('/account/delete', ifNoUser401, postDeleteAccount);
-  api.post('/account/reset-progress', ifNoUser401, postResetProgress);
-  api.post('/user/webhook-token', postWebhookToken);
+  api.post('/account/delete', ifNoUser401, deleteUserToken, postDeleteAccount);
+  api.post(
+    '/account/reset-progress',
+    ifNoUser401,
+    deleteUserToken,
+    postResetProgress
+  );
   api.post(
     '/user/report-user/',
     ifNoUser401,
@@ -41,105 +51,119 @@ function bootUser(app) {
     postReportUserProfile
   );
 
-  api.delete('/user/webhook-token', deleteWebhookToken);
+  api.post('/user/user-token', ifNoUser401, postUserToken);
+  api.delete(
+    '/user/user-token',
+    ifNoUser401,
+    deleteUserToken,
+    deleteUserTokenResponse
+  );
 
   app.use(api);
 }
 
-function createPostWebhookToken(app) {
-  const { WebhookToken } = app.models;
+function createPostUserToken(app) {
+  const { UserToken } = app.models;
 
-  return async function postWebhookToken(req, res) {
+  return async function postUserToken(req, res) {
     const ttl = 900 * 24 * 60 * 60 * 1000;
-    let newToken;
+    let encodedUserToken;
 
     try {
-      await WebhookToken.destroyAll({ userId: req.user.id });
-      newToken = await WebhookToken.create({ ttl, userId: req.user.id });
+      await UserToken.destroyAll({ userId: req.user.id });
+      const newUserToken = await UserToken.create({ ttl, userId: req.user.id });
+
+      if (!newUserToken?.id) throw new Error();
+      encodedUserToken = encodeUserToken(newUserToken.id);
     } catch (e) {
-      return res.status(500).json({
-        type: 'danger',
-        message: 'flash.create-token-err'
-      });
+      return res.status(500).send('Error starting project');
     }
 
-    return res.json(newToken?.id);
+    return res.json({ userToken: encodedUserToken });
   };
 }
 
-function createDeleteWebhookToken(app) {
-  const { WebhookToken } = app.models;
+function deleteUserTokenResponse(req, res) {
+  if (!req.userTokenDeleted) {
+    return res.status(500).send('Error deleting user token');
+  }
 
-  return async function deleteWebhookToken(req, res) {
-    try {
-      await WebhookToken.destroyAll({ userId: req.user.id });
-    } catch (e) {
-      return res.status(500).json({
-        type: 'danger',
-        message: 'flash.delete-token-err'
-      });
-    }
-
-    return res.json(null);
-  };
+  return res.send({ userToken: null });
 }
 
 function createReadSessionUser(app) {
-  const { Donation } = app.models;
+  const { Donation, UserToken } = app.models;
 
   return async function getSessionUser(req, res, next) {
     const queryUser = req.user;
 
-    const webhookTokenArr = await queryUser.webhookTokens({
-      userId: queryUser.id
-    });
-    const webhookToken = webhookTokenArr[0]?.id;
+    let encodedUserToken;
+    try {
+      const userId = queryUser?.id;
+      const userToken = userId
+        ? await UserToken.findOne({
+            where: { userId }
+          })
+        : null;
 
-    const source =
-      queryUser &&
-      Observable.forkJoin(
-        queryUser.getCompletedChallenges$(),
-        queryUser.getPoints$(),
-        Donation.getCurrentActiveDonationCount$(),
-        (completedChallenges, progressTimestamps, activeDonations) => ({
-          activeDonations,
-          completedChallenges,
-          progress: getProgress(progressTimestamps, queryUser.timezone)
-        })
+      encodedUserToken = userToken ? encodeUserToken(userToken.id) : undefined;
+    } catch (e) {
+      return next(e);
+    }
+
+    if (!queryUser || !queryUser.toJSON().username) {
+      // TODO: This should return an error status
+      return res.json({ user: {}, result: '' });
+    }
+
+    try {
+      const [
+        activeDonations,
+        completedChallenges,
+        partiallyCompletedChallenges,
+        progressTimestamps,
+        savedChallenges
+      ] = await Promise.all(
+        [
+          Donation.getCurrentActiveDonationCount$(),
+          queryUser.getCompletedChallenges$(),
+          queryUser.getPartiallyCompletedChallenges$(),
+          queryUser.getPoints$(),
+          queryUser.getSavedChallenges$()
+        ].map(obs => obs.toPromise())
       );
-    Observable.if(
-      () => !queryUser,
-      Observable.of({ user: {}, result: '' }),
-      Observable.defer(() => source)
-        .map(({ activeDonations, completedChallenges, progress }) => ({
-          user: {
-            ...queryUser.toJSON(),
-            ...progress,
-            completedChallenges: completedChallenges.map(
-              fixCompletedChallengeItem
-            )
-          },
-          sessionMeta: { activeDonations }
-        }))
-        .map(({ user, sessionMeta }) => ({
-          user: {
-            [user.username]: {
-              ...pick(user, userPropsForSession),
-              username: user.usernameDisplay || user.username,
-              isEmailVerified: !!user.emailVerified,
-              isGithub: !!user.githubProfile,
-              isLinkedIn: !!user.linkedin,
-              isTwitter: !!user.twitter,
-              isWebsite: !!user.website,
-              ...normaliseUserFields(user),
-              joinDate: user.id.getTimestamp(),
-              webhookToken
-            }
-          },
-          sessionMeta,
-          result: user.username
-        }))
-    ).subscribe(user => res.json(user), next);
+
+      const progress = getProgress(progressTimestamps, queryUser.timezone);
+      const user = {
+        ...queryUser.toJSON(),
+        ...progress,
+        completedChallenges: completedChallenges.map(fixCompletedChallengeItem),
+        partiallyCompletedChallenges: partiallyCompletedChallenges.map(
+          fixPartiallyCompletedChallengeItem
+        ),
+        savedChallenges: savedChallenges.map(fixSavedChallengeItem)
+      };
+      const response = {
+        user: {
+          [user.username]: {
+            ...pick(user, userPropsForSession),
+            username: user.usernameDisplay || user.username,
+            isEmailVerified: !!user.emailVerified,
+            ...normaliseUserFields(user),
+            joinDate: user.id.getTimestamp(),
+            userToken: encodedUserToken
+          }
+        },
+        sessionMeta: {
+          activeDonations
+        },
+        result: user.username
+      };
+      return res.json(response);
+    } catch (e) {
+      // TODO: This should return an error status
+      return res.json({ user: {}, result: '' });
+    }
   };
 }
 
@@ -230,7 +254,12 @@ function postResetProgress(req, res, next) {
       isSciCompPyCertV7: false,
       isDataAnalysisPyCertV7: false,
       isMachineLearningPyCertV7: false,
-      completedChallenges: []
+      isRelationalDatabaseCertV8: false,
+      isCollegeAlgebraPyCertV8: false,
+      completedChallenges: [],
+      savedChallenges: [],
+      partiallyCompletedChallenges: [],
+      needsModeration: false
     },
     function (err) {
       if (err) {
@@ -242,20 +271,8 @@ function postResetProgress(req, res, next) {
 }
 
 function createPostDeleteAccount(app) {
-  const { User, WebhookToken } = app.models;
+  const { User } = app.models;
   return async function postDeleteAccount(req, res, next) {
-    const {
-      user: { id: userId }
-    } = req;
-
-    try {
-      await WebhookToken.destroyAll({ userId });
-    } catch (err) {
-      log(
-        `An error occurred deleting webhook tokens for user with id ${userId} when they tried to delete their account`
-      );
-    }
-
     return User.destroyById(req.user.id, function (err) {
       if (err) {
         return next(err);

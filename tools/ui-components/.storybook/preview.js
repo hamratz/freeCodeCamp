@@ -1,5 +1,6 @@
+import '../src/base.css';
+
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -9,11 +10,11 @@ export const parameters = {
   backgrounds: {
     values: [
       {
-        name: 'light',
+        name: 'light-palette',
         value: '#ffffff'
       },
       {
-        name: 'dark',
+        name: 'dark-palette',
         value: '#0a0a23'
       }
     ]

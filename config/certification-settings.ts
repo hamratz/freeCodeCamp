@@ -14,23 +14,28 @@ export const certTypes = {
   dataAnalysisPyV7: 'isDataAnalysisPyCertV7',
   machineLearningPyV7: 'isMachineLearningPyCertV7',
   fullStack: 'isFullStackCert',
-  relationalDatabasesV8: 'isRelationalDatabasesCertV8'
-};
+  relationalDatabaseV8: 'isRelationalDatabaseCertV8',
+  collegeAlgebraPyV8: 'isCollegeAlgebraPyCertV8'
+} as const;
 
 export enum SuperBlocks {
   RespWebDesignNew = '2022/responsive-web-design',
   RespWebDesign = 'responsive-web-design',
   JsAlgoDataStruct = 'javascript-algorithms-and-data-structures',
+  JsAlgoDataStructNew = '2022/javascript-algorithms-and-data-structures',
   FrontEndDevLibs = 'front-end-development-libraries',
   DataVis = 'data-visualization',
-  RelationalDb = 'relational-databases',
+  RelationalDb = 'relational-database',
   BackEndDevApis = 'back-end-development-and-apis',
   QualityAssurance = 'quality-assurance',
   SciCompPy = 'scientific-computing-with-python',
   DataAnalysisPy = 'data-analysis-with-python',
   InfoSec = 'information-security',
   MachineLearningPy = 'machine-learning-with-python',
-  CodingInterviewPrep = 'coding-interview-prep'
+  CodingInterviewPrep = 'coding-interview-prep',
+  TheOdinProject = 'the-odin-project',
+  ProjectEuler = 'project-euler',
+  CollegeAlgebraPy = 'college-algebra-with-python'
 }
 
 export const certIds = {
@@ -49,13 +54,14 @@ export const certIds = {
   sciCompPyV7Id: '5e44431b903586ffb414c951',
   dataAnalysisPyV7Id: '5e46fc95ac417301a38fb934',
   machineLearningPyV7Id: '5e46fc95ac417301a38fb935',
-  relationalDatabasesV8Id: '606243f50267e718b1e755f4'
+  relationalDatabaseV8Id: '606243f50267e718b1e755f4',
+  collegeAlgebraPyV8Id: '61531b20cc9dfa2741a5b800'
 };
 
 export const completionHours = {
-  [certTypes.frontEnd]: 400,
-  [certTypes.backEnd]: 400,
-  [certTypes.dataVis]: 400,
+  [certTypes.frontEnd]: 300,
+  [certTypes.backEnd]: 300,
+  [certTypes.dataVis]: 300,
   [certTypes.infosecQa]: 300,
   [certTypes.fullStack]: 1800,
   [certTypes.respWebDesign]: 300,
@@ -68,7 +74,8 @@ export const completionHours = {
   [certTypes.sciCompPyV7]: 300,
   [certTypes.dataAnalysisPyV7]: 300,
   [certTypes.machineLearningPyV7]: 300,
-  [certTypes.relationalDatabasesV8]: 300
+  [certTypes.relationalDatabaseV8]: 300,
+  [certTypes.collegeAlgebraPyV8]: 300
 };
 
 export const certSlugTypeMap = {
@@ -83,7 +90,9 @@ export const certSlugTypeMap = {
 
   // modern
   [SuperBlocks.RespWebDesign]: certTypes.respWebDesign,
+  [SuperBlocks.RespWebDesignNew]: certTypes.respWebDesign,
   [SuperBlocks.JsAlgoDataStruct]: certTypes.jsAlgoDataStruct,
+  [SuperBlocks.JsAlgoDataStructNew]: certTypes.jsAlgoDataStruct,
   [SuperBlocks.FrontEndDevLibs]: certTypes.frontEndDevLibs,
   [SuperBlocks.DataVis]: certTypes.dataVis2018,
   [SuperBlocks.BackEndDevApis]: certTypes.apisMicroservices,
@@ -92,7 +101,8 @@ export const certSlugTypeMap = {
   'scientific-computing-with-python-v7': certTypes.sciCompPyV7,
   'data-analysis-with-python-v7': certTypes.dataAnalysisPyV7,
   'machine-learning-with-python-v7': certTypes.machineLearningPyV7,
-  'relational-databases-v8': certTypes.relationalDatabasesV8
+  'relational-database-v8': certTypes.relationalDatabaseV8,
+  'college-algebra-with-python-v8': certTypes.collegeAlgebraPyV8
 };
 
 export const superBlockCertTypeMap = {
@@ -114,11 +124,13 @@ export const superBlockCertTypeMap = {
   [SuperBlocks.SciCompPy]: certTypes.sciCompPyV7,
   [SuperBlocks.DataAnalysisPy]: certTypes.dataAnalysisPyV7,
   [SuperBlocks.MachineLearningPy]: certTypes.machineLearningPyV7,
-  [SuperBlocks.RelationalDb]: certTypes.relationalDatabasesV8,
+  [SuperBlocks.RelationalDb]: certTypes.relationalDatabaseV8,
+  [SuperBlocks.CollegeAlgebraPy]: certTypes.collegeAlgebraPyV8,
 
   // post-modern
   // TODO: use enum
-  '2022/responsive-web-design': certTypes.respWebDesign
+  [SuperBlocks.RespWebDesignNew]: certTypes.respWebDesign,
+  [SuperBlocks.JsAlgoDataStructNew]: certTypes.jsAlgoDataStruct
 };
 
 export const certTypeIdMap = {
@@ -137,7 +149,8 @@ export const certTypeIdMap = {
   [certTypes.sciCompPyV7]: certIds.sciCompPyV7Id,
   [certTypes.dataAnalysisPyV7]: certIds.dataAnalysisPyV7Id,
   [certTypes.machineLearningPyV7]: certIds.machineLearningPyV7Id,
-  [certTypes.relationalDatabasesV8]: certIds.relationalDatabasesV8Id
+  [certTypes.relationalDatabaseV8]: certIds.relationalDatabaseV8Id,
+  [certTypes.collegeAlgebraPyV8]: certIds.collegeAlgebraPyV8Id
 };
 
 export const certTypeTitleMap = {
@@ -156,7 +169,8 @@ export const certTypeTitleMap = {
   [certTypes.sciCompPyV7]: 'Scientific Computing with Python',
   [certTypes.dataAnalysisPyV7]: 'Data Analysis with Python',
   [certTypes.machineLearningPyV7]: 'Machine Learning with Python',
-  [certTypes.relationalDatabasesV8]: 'Relational Databases'
+  [certTypes.relationalDatabaseV8]: 'Relational Database',
+  [certTypes.collegeAlgebraPyV8]: 'College Algebra with Python'
 };
 
 export const oldDataVizId = '561add10cb82ac38a17513b3';

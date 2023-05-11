@@ -11,6 +11,8 @@ dashedName: stand-in-line
 
 In Informatica una <dfn>coda</dfn> (queue) è una <dfn>struttura di dati</dfn> astratta dove gli elementi sono tenuti in ordine. I nuovi elementi possono essere aggiunti alla fine della coda e quelli vecchi vengono rimossi dall'inizio della coda.
 
+# --instructions--
+
 Scrivi una funzione `nextInLine` che prende un array (`arr`) e un numero (`item`) come argomenti.
 
 Aggiungi il numero alla fine dell'array, quindi rimuovi il primo elemento dell'array.
@@ -96,7 +98,7 @@ function nextInLine(arr, item) {
 }
 
 // Setup
-const testArr = [1, 2, 3, 4, 5];
+let testArr = [1, 2, 3, 4, 5];
 
 // Display code
 console.log("Before: " + JSON.stringify(testArr));
@@ -107,7 +109,7 @@ console.log("After: " + JSON.stringify(testArr));
 # --solutions--
 
 ```js
-const testArr = [1, 2, 3, 4, 5];
+let testArr = [1, 2, 3, 4, 5];
 
 function nextInLine(arr, item) {
     arr.push(item);

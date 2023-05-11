@@ -1,14 +1,14 @@
 ---
 id: 59c3ec9f15068017c96eb8a3
 title: Sequência de Farey
-challengeType: 5
+challengeType: 1
 forumTopicId: 302266
 dashedName: farey-sequence
 ---
 
 # --description--
 
-A [sequência de Farey](https://en.wikipedia.org/wiki/Farey sequence "wp: Farey sequence") <code>F<sub>n</sub></code> de ordem `n` é a sequência de frações completamente reduzida entre `0` e `1` que, quando em seus termos menores, tem denominadores menores que ou iguais a `n`, organizadas em ordem de tamanho crescente.
+A sequência de Farey <code>F<sub>n</sub></code> de ordem `n` é a sequência de frações completamente reduzida entre `0` e `1` que, quando em seus termos menores, tem denominadores menores que ou iguais a `n`, organizadas em ordem de tamanho crescente.
 
 A *sequência de Farey*, algumas vezes, é incorretamente chamada de *série de Farey*.
 
@@ -47,32 +47,33 @@ assert(typeof farey === 'function');
 assert(Array.isArray(farey(3)));
 ```
 
-`farey(3)` deve retornar `["1/3","1/2","2/3"]`
+`farey(3)` deve retornar `['0/1','1/3','1/2','2/3','1/1']`
 
 ```js
-assert.deepEqual(farey(3), ['1/3', '1/2', '2/3']);
+assert.deepEqual(farey(3),['0/1', '1/3', '1/2', '2/3', '1/1']);
 ```
 
-`farey(4)` deve retornar `["1/4","1/3","1/2","2/4","2/3","3/4"]`
+`farey(4)` deve retornar `['0/1','1/4','1/3','1/2','2/3','3/4','1/1']`
 
 ```js
-assert.deepEqual(farey(4), ['1/4', '1/3', '1/2', '2/4', '2/3', '3/4']);
+assert.deepEqual(farey(4), ['0/1', '1/4', '1/3', '1/2', '2/3', '3/4', '1/1']);
 ```
 
-`farey(5)` deve retornar `["1/5","1/4","1/3","2/5","1/2","2/4","3/5","2/3","3/4","4/5"]`
+`farey(5)` deve retornar `['0/1','1/5','1/4','1/3','2/5','1/2','3/5','2/3','3/4','4/5','1/1']`
 
 ```js
 assert.deepEqual(farey(5), [
+  '0/1',
   '1/5',
   '1/4',
   '1/3',
   '2/5',
   '1/2',
-  '2/4',
   '3/5',
   '2/3',
   '3/4',
-  '4/5'
+  '4/5',
+  '1/1'
 ]);
 ```
 
@@ -89,21 +90,17 @@ function farey(n) {
 # --solutions--
 
 ```js
-function farey(n){
-    let farSeq=[];
-    for(let den = 1; den <= n; den++){
-        for(let num = 1; num < den; num++){
-            farSeq.push({
-                str:num+"/"+den,
-                val:num/den});
-        }
+function farey(n) {
+  const sequence = [{ string: "0/1", float: 0.0 }];
+  for (let i = 1; i < n; i++) {
+    for (let j = n; j >= i; j--) {
+      if (i === 1 || j % i > 0) {
+        sequence.push({ string: `${i}/${j}`, float: i / j });
+      }
     }
-    farSeq.sort(function(a,b){
-        return a.val-b.val;
-    });
-    farSeq=farSeq.map(function(a){
-        return a.str;
-    });
-    return farSeq;
+  }
+  return sequence
+    .sort((a, b) => a.float - b.float)
+    .map(e => e.string)
 }
 ```

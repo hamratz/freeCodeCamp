@@ -3,21 +3,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react';
-import Helmet from 'react-helmet';
+import { User } from '../../redux/prop-types';
 
 import UniversalNav from './components/universal-nav';
 
 import './header.css';
 
-export interface HeaderProps {
+interface HeaderProps {
   fetchState: { pending: boolean };
-  user: Record<string, any>;
+  user: User;
+  skipButtonText: string;
 }
 export class Header extends React.Component<
   HeaderProps,
   { displayMenu: boolean }
 > {
-  menuButtonRef: React.RefObject<any>;
+  menuButtonRef: React.RefObject<HTMLButtonElement>;
   searchBarRef: React.RefObject<any>;
   static displayName: string;
   constructor(props: HeaderProps) {
@@ -28,56 +29,59 @@ export class Header extends React.Component<
     this.menuButtonRef = React.createRef();
     this.searchBarRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.toggleDisplayMenu = this.toggleDisplayMenu.bind(this);
-  }
-
-  componentDidMount(): void {
-    document.addEventListener('click', this.handleClickOutside);
-  }
-
-  componentWillUnmount(): void {
-    document.removeEventListener('click', this.handleClickOutside);
+    this.showMenu = this.showMenu.bind(this);
+    this.hideMenu = this.hideMenu.bind(this);
   }
 
   handleClickOutside(event: globalThis.MouseEvent): void {
+    const eventTarget = event.target as HTMLElement;
     if (
       this.state.displayMenu &&
       this.menuButtonRef.current &&
-      !this.menuButtonRef.current.contains(event.target) &&
+      !this.menuButtonRef.current.contains(eventTarget) &&
       // since the search bar is part of the menu on small screens, clicks on
       // the search bar should not toggle the menu
       this.searchBarRef.current &&
-      !this.searchBarRef.current.contains(event.target) &&
-      !(event.target instanceof HTMLSelectElement)
+      !this.searchBarRef.current.contains(eventTarget) &&
+      // don't count clicks on searcn bar inputs reset button
+      !eventTarget.closest('.ais-SearchBox-reset') &&
+      // don't count clicks on disabled elements
+      !eventTarget.closest('[aria-disabled="true"]')
     ) {
-      this.toggleDisplayMenu();
+      this.hideMenu();
     }
   }
 
-  toggleDisplayMenu(): void {
-    this.setState(({ displayMenu }: { displayMenu: boolean }) => ({
-      displayMenu: !displayMenu
-    }));
+  showMenu(): void {
+    this.setState({ displayMenu: true }, () => {
+      document.addEventListener('click', this.handleClickOutside);
+    });
   }
+
+  hideMenu(): void {
+    this.setState({ displayMenu: false }, () => {
+      document.removeEventListener('click', this.handleClickOutside);
+    });
+  }
+
   render(): JSX.Element {
     const { displayMenu } = this.state;
-    const { fetchState, user } = this.props;
+    const { fetchState, user, skipButtonText } = this.props;
     return (
-      <>
-        <Helmet>
-          <style>{':root{--header-height: 38px}'}</style>
-        </Helmet>
-        <header>
-          <UniversalNav
-            displayMenu={displayMenu}
-            fetchState={fetchState}
-            menuButtonRef={this.menuButtonRef}
-            searchBarRef={this.searchBarRef}
-            toggleDisplayMenu={this.toggleDisplayMenu}
-            user={user}
-          />
-        </header>
-      </>
+      <header>
+        <a href='#content-start' className='skip-to-content-button'>
+          {skipButtonText}
+        </a>
+        <UniversalNav
+          displayMenu={displayMenu}
+          fetchState={fetchState}
+          hideMenu={this.hideMenu}
+          menuButtonRef={this.menuButtonRef}
+          searchBarRef={this.searchBarRef}
+          showMenu={this.showMenu}
+          user={user}
+        />
+      </header>
     );
   }
 }

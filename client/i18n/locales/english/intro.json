@@ -1,6 +1,6 @@
 {
   "responsive-web-design": {
-    "title": "Responsive Web Design",
+    "title": "Legacy Responsive Web Design",
     "intro": [
       "In this Responsive Web Design Certification, you'll learn the languages that developers use to build webpages: HTML (Hypertext Markup Language) for content, and CSS (Cascading Style Sheets) for design.",
       "First, you'll build a cat photo app to learn the basics of HTML and CSS. Later, you'll learn modern techniques like CSS variables by building a penguin, and best practices for accessibility by building a web form.",
@@ -67,44 +67,49 @@
     }
   },
   "2022/responsive-web-design": {
-    "title": "Responsive Web Design (Beta)",
+    "title": "Responsive Web Design",
     "intro": [
       "In this Responsive Web Design Certification, you'll learn the languages that developers use to build webpages: HTML (Hypertext Markup Language) for content, and CSS (Cascading Style Sheets) for design.",
-      "First, you'll build a cat photo app to learn the basics of HTML and CSS. Later, you'll learn modern techniques like CSS variables by building a penguin, and best practices for accessibility by building a web form.",
-      "Finally, you'll learn how to make webpages that respond to different screen sizes by building a Twitter card with Flexbox, and a complex blog layout with CSS Grid."
+      "First, you'll build a cat photo app to learn the basics of HTML and CSS. Later, you'll learn modern techniques like CSS variables by building a penguin, and best practices for accessibility by building a quiz site.",
+      "Finally, you'll learn how to make webpages that respond to different screen sizes by building a photo gallery with Flexbox, and a magazine article layout with CSS Grid."
     ],
     "note": "Note: Some browser extensions, such as ad-blockers and dark mode extensions can interfere with the tests. If you face issues, we recommend disabling extensions that modify the content or layout of pages, while taking the course.",
     "blocks": {
       "build-a-tribute-page-project": {
-        "title": "Build a Tribute Page Project",
+        "title": "Tribute Page",
         "intro": [
           "This is one of the required projects to earn your certification.",
           "For this project, you will build a tribute page for a subject of your choosing, fictional or real."
-        ] },
+        ]
+      },
       "build-a-personal-portfolio-webpage-project": {
-        "title": "Build a Personal Portfolio Webpage Project",
+        "title": "Personal Portfolio Webpage",
         "intro": [
           "This is one of the required projects to earn your certification.",
           "For this project, you will build your own personal portfolio page."
-        ] },
+        ]
+      },
       "build-a-product-landing-page-project": {
-        "title": "Build a Product Landing Page Project",
+        "title": "Product Landing Page",
         "intro": [
           "This is one of the required projects to earn your certification.",
           "For this project, you will build a product landing page to market a product of your choice."
-        ] },
+        ]
+      },
       "build-a-survey-form-project": {
-        "title": "Build a Survey Form Project",
+        "title": "Survey Form",
         "intro": [
           "This is one of the required projects to earn your certification.",
           "For this project, you will build a survey form to collect data from your users."
-        ] },
+        ]
+      },
       "build-a-technical-documentation-page-project": {
-        "title": "Build a Technical Documentation Page Project",
+        "title": "Technical Documentation Page",
         "intro": [
           "This is one of the required projects to earn your certification.",
           "For this project, you will build a technical documentation page to serve as instruction or reference for a topic."
-        ] },
+        ]
+      },
       "learn-html-by-building-a-cat-photo-app": {
         "title": "Learn HTML by Building a Cat Photo App",
         "intro": [
@@ -150,7 +155,7 @@
       "learn-intermediate-css-by-building-a-picasso-painting": {
         "title": "Learn Intermediate CSS by Building a Picasso Painting",
         "intro": [
-          "In this course, you'll use learn some intermediate CSS techniques by coding your own Picasso painting webpage. You'll learn about SVG icons, CSS positioning, and review other CSS skills you've learned."
+          "In this course, you'll learn how to use some intermediate CSS techniques by coding your own Picasso painting webpage. You'll learn about SVG icons, CSS positioning, and review other CSS skills you've learned."
         ]
       },
       "learn-responsive-web-design-by-building-a-piano": {
@@ -181,24 +186,34 @@
           "In this course, you'll use typography to build a nutrition label webpage. You'll learn how to style text, adjust line height, and position your text using CSS."
         ]
       },
-      "learn-css-transforms-by-building-a-penguin": { "title": "Learn CSS Transforms by Building a Penguin", "intro": [
-        "You can transform HTML elements to create appealing designs that draw your reader's eye. You can use transforms to rotate elements, scale them, and more.",
-        "In this course, you'll build a penguin. You'll use CSS transforms to position and resize the parts of your penguin, create a background, and animate your work."
-      ] },
-      "learn-css-animation-by-building-a-ferris-wheel": { "title": "Learn CSS Animation by Building a Ferris Wheel", "intro": [
-        "You can use CSS animation to draw attention to specific sections of your webpage and make it more engaging.",
-        "In this course, you'll build a Ferris wheel. You'll learn how to use CSS to animate elements, transform them, and adjust their speed."
-      ] },
-      "learn-more-about-css-pseudo-selectors-by-building-a-balance-sheet": { "title": "Learn More About CSS Pseudo Selectors By Building A Balance Sheet", "intro": [
-        "You can use CSS pseudo selectors to change specific HTML elements.",
-        "In this course, you'll build a balance sheet using pseudo selectors. You'll learn how to change the style of an element when you hover over it with your mouse, and trigger other events on your webpage."
-      ] },
+      "learn-css-transforms-by-building-a-penguin": {
+        "title": "Learn CSS Transforms by Building a Penguin",
+        "intro": [
+          "You can transform HTML elements to create appealing designs that draw your reader's eye. You can use transforms to rotate elements, scale them, and more.",
+          "In this course, you'll build a penguin. You'll use CSS transforms to position and resize the parts of your penguin, create a background, and animate your work."
+        ]
+      },
+      "learn-css-animation-by-building-a-ferris-wheel": {
+        "title": "Learn CSS Animation by Building a Ferris Wheel",
+        "intro": [
+          "You can use CSS animation to draw attention to specific sections of your webpage and make it more engaging.",
+          "In this course, you'll build a Ferris wheel. You'll learn how to use CSS to animate elements, transform them, and adjust their speed."
+        ]
+      },
+      "learn-more-about-css-pseudo-selectors-by-building-a-balance-sheet": {
+        "title": "Learn More About CSS Pseudo Selectors By Building A Balance Sheet",
+        "intro": [
+          "You can use CSS pseudo selectors to change specific HTML elements.",
+          "In this course, you'll build a balance sheet using pseudo selectors. You'll learn how to change the style of an element when you hover over it with your mouse, and trigger other events on your webpage."
+        ]
+      },
       "learn-css-colors-by-building-a-set-of-colored-markers": {
         "title": "Learn CSS Colors by Building a Set of Colored Markers",
         "intro": [
           "Selecting the correct colors for your webpage can greatly improve the aesthetic appeal to your readers.",
           "In this course, you'll build a set of colored markers. You'll learn different ways to set color values and how to pair colors with each other."
-      ] }
+        ]
+      }
     }
   },
   "javascript-algorithms-and-data-structures": {
@@ -281,27 +296,69 @@
           "This is it — time to put your new JavaScript skills to work. These projects are similar to the algorithm scripting challenges you've done before – just much more difficult.",
           "Complete these 5 JavaScript projects to earn the JavaScript Algorithms and Data Structures certification."
         ]
+      }
+    }
+  },
+  "2022/javascript-algorithms-and-data-structures": {
+    "title": "JavaScript Algorithms and Data Structures (Beta)",
+    "intro": ["placeholder", "placeholder"],
+    "note": "",
+    "blocks": {
+      "build-a-caesars-cipher-project": {
+        "title": "Build a Caesars Cipher Project",
+        "intro": ["", ""]
       },
-      "basic-javascript-rpg-game": {
-        "title": "Basic JavaScript RPG Game",
-        "intro": [
-          "",
-          ""
-        ]
+      "build-a-cash-register-project": {
+        "title": "Build a Cash Register Project",
+        "intro": ["", ""]
       },
-      "intermediate-javascript-calorie-counter": {
-        "title": "Intermediate JavaScript Calorie Counter",
-        "intro": [
-          "",
-          ""
-        ]
+      "build-a-palindrome-checker-project": {
+        "title": "Build a Palindrome Checker Project",
+        "intro": ["", ""]
       },
-      "functional-programming-spreadsheet": {
-        "title": "Functional Programming Spreadsheet",
-        "intro": [
-          "",
-          ""
-        ]
+      "build-a-roman-numeral-converter-project": {
+        "title": "Build a Roman Numeral Converter Project",
+        "intro": ["", ""]
+      },
+      "build-a-telephone-number-validator-project": {
+        "title": "Build a Telephone Number Validator Project",
+        "intro": ["", ""]
+      },
+      "learn-basic-javascript-by-building-a-role-playing-game": {
+        "title": "Learn Basic JavaScript by Building a Role Playing Game",
+        "intro": ["", ""]
+      },
+      "learn-form-validation-by-building-a-calorie-counter": {
+        "title": "Learn Form Validation by Building a Calorie Counter",
+        "intro": ["", ""]
+      },
+      "learn-functional-programming-by-building-a-spreadsheet": {
+        "title": "Learn Functional Programming by Building a Spreadsheet",
+        "intro": ["", ""]
+      },
+      "learn-modern-javascript-methods-by-building-football-team-cards": {
+        "title": "Learn Modern JavaScript Methods By Building Football Team Cards",
+        "intro": ["", ""]
+      },
+      "learn-advanced-array-methods-by-building-a-statistics-calculator": {
+        "title": "Learn Advanced Array Methods by Building a Statistics Calculator",
+        "intro": ["", ""]
+      },
+      "learn-data-structures-by-building-a-shopping-cart": {
+        "title": "Learn Data Structures By Building A Shopping Cart",
+        "intro": ["", ""]
+      },
+      "learn-fetch-and-promises-by-building-an-fcc-authors-page": {
+        "title": "Learn Fetch and Promises By Building an fCC Authors Page",
+        "intro": ["", ""]
+      },
+      "learn-regular-expressions-by-building-a-spam-filter": {
+        "title": "Learn Regular Expressions by Building a Spam Filter",
+        "intro": ["", ""]
+      },
+      "learn-basic-algorithmic-thinking-by-building-a-number-sorter": {
+        "title": "Learn Basic Algorithmic Thinking by Building a Number Sorter",
+        "intro": ["", ""]
       }
     }
   },
@@ -309,7 +366,7 @@
     "title": "Front End Development Libraries",
     "intro": [
       "Now that you're familiar with HTML, CSS, and JavaScript, level up your skills by learning some of the most popular front end libraries in the industry.",
-      "In the Front End Development Libraries Certification, you'll learn how to style your site quickly with Bootstrap. You'll also learn how add logic to your CSS styles and extend them with Sass.",
+      "In the Front End Development Libraries Certification, you'll learn how to style your site quickly with Bootstrap. You'll also learn how to add logic to your CSS styles and extend them with Sass.",
       "Later, you'll build a shopping cart and other applications to learn how to create powerful Single Page Applications (SPAs) with React and Redux."
     ],
     "note": "",
@@ -401,27 +458,113 @@
           "In these projects, you'll need to fetch data and parse a dataset, then use D3 to create different data visualizations. Finish them all to earn your Data Visualization certification."
         ]
       },
-      "d3-dashboard": {
-        "title": "D3 Dashboard",
-        "intro": [
-          "",
-          ""
-        ]
-      }
+      "d3-dashboard": { "title": "D3 Dashboard", "intro": ["", ""] }
     }
   },
-  "relational-databases": {
-    "title": "Relational Databases",
+  "relational-database": {
+    "title": "Relational Database",
     "intro": [
-      "For these courses, you will use real developer tools and software including VS Code, PostgreSQL, and the Linux / Unix command line to complete interactive tutorials and build projects."
+      "For these courses, you will use real developer tools and software including VS Code, PostgreSQL, and the Linux / Unix command line to complete interactive tutorials and build projects.",
+      "These courses start off with basic Bash commands. Using the terminal, you will learn everything from navigating and manipulating a file system, scripting in Bash, all the way to advanced usage.",
+      "Next, you will learn how to create and use a relational database with PostgreSQL, a database management system, and SQL, the language of these databases.",
+      "Finally, you will learn Git, the version control system, an essential tool of every developer."
     ],
     "blocks": {
-      "learn-relational-databases": {
-        "title": "Learn Relational Databases",
+      "build-a-celestial-bodies-database-project": {
+        "title": "Celestial Bodies Database",
         "intro": [
-          "These courses start off with basic Bash commands. Using the terminal, you will learn everything from navigating and manipulating a file system, scripting in Bash, all the way to advanced usage.",
-          "Next, you will learn how to create and work with relational databases using PostgreSQL, a database management system, and SQL, the language of these databases.",
-          "Finally, you will learn Git, the version control system, and GitHub, a code repository hosting service - two essential tools of every developer."
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a database of celestial bodies using PostgreSQL."
+        ]
+      },
+      "build-a-number-guessing-game-project": {
+        "title": "Number Guessing Game",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will use Bash scripting, PostgreSQL, and Git to create a number guessing game that runs in the terminal and saves user information."
+        ]
+      },
+      "build-a-periodic-table-database-project": {
+        "title": "Periodic Table Database",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will create Bash a script to get information about chemical elements from a periodic table database."
+        ]
+      },
+      "build-a-salon-appointment-scheduler-project": {
+        "title": "Salon Appointment Scheduler",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will create an interactive Bash program that uses PostgreSQL to track the customers and appointments for your salon."
+        ]
+      },
+      "build-a-world-cup-database-project": {
+        "title": "World Cup Database",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will create a Bash script that enters information from World Cup games into PostgreSQL, then query the database for useful statistics."
+        ]
+      },
+      "learn-advanced-bash-by-building-a-kitty-ipsum-translator": {
+        "title": "Learn Advanced Bash by Building a Kitty Ipsum Translator",
+        "intro": [
+          "There's more to Bash commands than you might think.",
+          "In this 140-lesson course, you will learn some more complex commands, and the details of how commands work."
+        ]
+      },
+      "learn-bash-and-sql-by-building-a-bike-rental-shop": {
+        "title": "Learn Bash and SQL by Building a Bike Rental Shop",
+        "intro": [
+          "In this 210-lesson course, you will build an interactive Bash program that stores rental information for your bike rental shop using PostgreSQL."
+        ]
+      },
+      "learn-bash-by-building-a-boilerplate": {
+        "title": "Learn Bash by Building a Boilerplate",
+        "intro": [
+          "The terminal allows you to send text commands to your computer that can manipulate the file system, run programs, automate tasks, and much more.",
+          "In this 170-lesson course, you will learn terminal commands by creating a website boilerplate using only the command line."
+        ]
+      },
+      "learn-bash-scripting-by-building-five-programs": {
+        "title": "Learn Bash Scripting by Building Five Programs",
+        "intro": [
+          "Bash scripts combine terminal commands and logic into programs that can execute or automate tasks, and much more.",
+          "In this 220-lesson course, you will learn more terminal commands and how to use them within Bash scripts by creating five small programs."
+        ]
+      },
+      "learn-git-by-building-an-sql-reference-object": {
+        "title": "Learn Git by Building an SQL Reference Object",
+        "intro": [
+          "Git is a version control system that keeps track of all the changes you make to your codebase.",
+          "In this 240-lesson course, you will learn how Git keeps track of your code by creating an object containing commonly used SQL commands."
+        ]
+      },
+      "learn-nano-by-building-a-castle": {
+        "title": "Learn Nano by Building a Castle",
+        "intro": [
+          "Nano is a program that allows you to edit files right in the terminal.",
+          "In this 40-lesson course, you will learn how to edit files in the terminal with Nano while building a castle."
+        ]
+      },
+      "learn-relational-databases-by-building-a-mario-database": {
+        "title": "Learn Relational Databases by Building a Mario Database",
+        "intro": [
+          "A relational database organizes data into tables that are linked together through relationships.",
+          "In this 165-lesson course, you will learn the basics of a relational database by creating a PostgreSQL database filled with video game characters."
+        ]
+      },
+      "learn-sql-by-building-a-student-database-part-1": {
+        "title": "Learn SQL by Building a Student Database: Part 1",
+        "intro": [
+          "SQL, or Structured Query Language, is the language for communicating with a relational database.",
+          "In this 140-lesson course, you will create a Bash script that uses SQL to enter information about your computer science students into PostgreSQL."
+        ]
+      },
+      "learn-sql-by-building-a-student-database-part-2": {
+        "title": "Learn SQL by Building a Student Database: Part 2",
+        "intro": [
+          "SQL join commands are used to combine information from multiple tables in a relational database",
+          "In this 140-lesson course, you will complete your student database while diving deeper into SQL commands."
         ]
       }
     }
@@ -431,7 +574,7 @@
     "intro": [
       "Until this point, you've only used JavaScript on the front end to add interactivity to a page, solve algorithm challenges, or build an SPA. But JavaScript can also be used on the back end, or server, to build entire web applications.",
       "Today, one of the popular ways to build applications is through microservices, which are small, modular applications that work together to form a larger whole.",
-      "In the Back End Development and APIs Certification, you'll learn how to write back end apps with Node.js and npm (Node Package Manager). You'll also build web applications with the Express framework, and build a People Finder microservice with MongoDB and the Mongoose library."
+      "In the Back End Development and APIs Certification, you'll learn how to write back end apps with Node.js and npm. You'll also build web applications with the Express framework, and build a People Finder microservice with MongoDB and the Mongoose library."
     ],
     "note": "",
     "blocks": {
@@ -447,15 +590,15 @@
         "intro": [
           "Node.js is a JavaScript runtime that allows developers to write backend (server-side) programs in JavaScript. Node.js comes with a handful of built-in modules — small, independent programs — that help with this. Some of the core modules include HTTP, which acts like a server, and File System, a module to read and modify files.",
           "In the last set of courses you learned to install and manage packages from npm, which are collections of smaller modules. These packages can help you build larger, more complex applications.",
-          "Express is a lightweight web application framework, and is one of the most popular packages on npm. Express makes it much easier to create a server and handle routing for your application, which handles things like direct people to the correct page when they visit a certain endpoint like <pre>/blog</pre>.",
+          "Express is a lightweight web application framework, and is one of the most popular packages on npm. Express makes it much easier to create a server and handle routing for your application, which handles things like directing people to the correct page when they visit a certain endpoint like <pre>/blog</pre>.",
           "In this course, you'll learn the basics of Node and Express including how to create a server, serve different files, and handle different requests from the browser."
         ]
       },
       "mongodb-and-mongoose": {
         "title": "MongoDB and Mongoose",
         "intro": [
-          "MongoDB is a database application that stores JSON documents (or records) that you can use in your application. Unlike SQL, another type of database, Mongo is a non-relational or \"NoSQL\" database. This means Mongo stores all associated data within one record, instead of storing it across many preset tables as in a SQL database.",
-          "Mongoose is a popular npm package that is often installed alongside Mongo. With Mongoose, you can use plain JavaScript objects instead of JSON, which makes it easier to work with Mongo. Also, it allows you to create blueprints for your documents called schemas, so you don't accidentally save the wrong type of data and cause bugs later.",
+          "MongoDB is a database application that stores JSON documents (or records) that you can use in your application. Unlike SQL, another type of database, MongoDB is a non-relational or \"NoSQL\" database. This means MongoDB stores all associated data within one record, instead of storing it across many preset tables as in a SQL database.",
+          "Mongoose is a popular npm package for interacting with MongoDB. With Mongoose, you can use plain JavaScript objects instead of JSON, which makes it easier to work with MongoDB. Also, it allows you to create blueprints for your documents called schemas, so you don't accidentally save the wrong type of data and cause bugs later.",
           "In the MongoDB and Mongoose courses, you'll learn the fundamentals of working with persistent data including how to set up a model, and save, delete, and find documents in the database."
         ]
       },
@@ -619,13 +762,147 @@
       }
     }
   },
+  "college-algebra-with-python": {
+    "title": "College Algebra with Python",
+    "intro": [
+      "This course is designed as a one-semester college course. It consists of instructional videos, with Google Colaboratory notebooks to follow along interactively, assignments, and challenging projects.",
+      "As you go through each part of this course in sequence, you will gain a full understanding of Algebra and how to write Python code to solve Algebra problems.",
+      "Throughout this course, you will also build your own Algebra Colab notebook that you will be able to use as your custom calculator. This course (and the code you write here) will give you the foundation for a deeper math and data science understanding."
+    ],
+    "note": "",
+    "blocks": {
+      "learn-ratios-and-proportions": {
+        "title": "Learn Ratios and Proportions",
+        "intro": [
+          "Your journey begins here as you learn how to set up a Colab Notebook that can run Python code. Then, use the notebook to follow along with the videos to learn ratios and proportions using Python."
+        ]
+      },
+      "learn-how-to-solve-for-x": {
+        "title": "Learn How to Solve for X",
+        "intro": [
+          "This unit will focus on how to solve for an unknown number (often referred to as \"x\") using written Algebra and Python code."
+        ]
+      },
+      "learn-fractions-and-decimals": {
+        "title": "Learn Fractions and Decimals",
+        "intro": [
+          "This unit will focus on converting decimals to fractions and percents."
+        ]
+      },
+      "learn-functions-and-graphing": {
+        "title": "Learn Functions and Graphing",
+        "intro": ["This unit will teach you about math functions."]
+      },
+      "learn-linear-functions": {
+        "title": "Learn Linear Functions",
+        "intro": [
+          "This unit will show you how to develop linear equations from two points."
+        ]
+      },
+      "learn-common-factors-and-square-roots": {
+        "title": "Learn Common Factors and Square Roots",
+        "intro": [
+          "In this unit, you will learn how to find common factors and divide them out. This will be useful when simplifying fractions and factoring square roots."
+        ]
+      },
+      "build-a-multi-function-calculator-project": {
+        "title": "Multi-Function Calculator",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a multi-function calculator."
+        ]
+      },
+      "learn-how-to-graph-systems-of-equations": {
+        "title": "Learn How to Graph Systems of Equations",
+        "intro": [
+          "This unit will focus on graphing two equations on the same coordinate plane, so that you can see where the lines intersect."
+        ]
+      },
+      "learn-how-to-solve-systems-of-equations": {
+        "title": "Learn How to Solve Systems of Equations",
+        "intro": [
+          "In this unit, you will learn how to solve a system of two equations (with two variables) without graphing. You will see how you can factor an equation and solve for a certain variable in Python. By the end of this unit, you will be able to solve and graph the system with one block of code."
+        ]
+      },
+      "learn-applications-of-linear-systems": {
+        "title": "Learn Applications of Linear Systems",
+        "intro": [
+          "In this unit, you will see how you can use the algebra you learned so far to solve real world problems."
+        ]
+      },
+      "learn-quadratic-equations": {
+        "title": "Learn Quadratic Equations",
+        "intro": [
+          "This unit will go beyond linear equations, to work with exponents and graph parabolas. You will learn how to find key points in parabolas and how to solve quadratic equations."
+        ]
+      },
+      "build-a-graphing-calculator-project": {
+        "title": "Graphing Calculator",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a graphing calculator."
+        ]
+      },
+      "learn-parent-graphs-and-polynomials": {
+        "title": "Learn Parent Graphs and Polynomials",
+        "intro": [
+          "This unit will show you many different types of \"parent\" graphs, the basic patterns that make up more complicated graphs. Polynomials are mathematical expressions with \"multiple things\" - the more complicated equations that are built with basic patterns. You will see what these graphs look like, how to modify them, and how to do this all with Python code."
+        ]
+      },
+      "build-three-math-games-project": {
+        "title": "Three Math Games",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build three math games."
+        ]
+      },
+      "learn-business-applications-of-college-algebra": {
+        "title": "Learn Business Applications of College Algebra",
+        "intro": [
+          "This unit will show you how to apply your solving and graphing skills to find cost, revenue, and profit. You will write code to develop a demand function from two points. You will see how price affects the profit graph and how all of these equations relate to each other."
+        ]
+      },
+      "learn-simple-and-compound-interest": {
+        "title": "Learn Simple and Compound Interest",
+        "intro": [
+          "This unit will show you how to calculate interest, loan payments, and the estimated value of investments. You will see the math formula and turn that into code. Because these formulas tend to get complicated, you will appreciate having the code where you can just modify a few values."
+        ]
+      },
+      "learn-exponents-and-logarithms": {
+        "title": "Learn Exponents and Logarithms",
+        "intro": [
+          "This unit will show you how exponents and logarithms are inverse functions, and how you can use these functions in various applications."
+        ]
+      },
+      "build-a-financial-calculator-project": {
+        "title": "Financial Calculator",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a financial calculator."
+        ]
+      },
+      "college-algebra-with-python-conclusion": {
+        "title": "College Algebra with Python: Conclusion",
+        "intro": [
+          "This will be the last unit in this course. Let's look at how you can connect your Math and Python knowledge with external data."
+        ]
+      },
+      "build-a-data-graph-explorer-project": {
+        "title": "Data Graph Explorer",
+        "intro": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a data graph explorer."
+        ]
+      }
+    }
+  },
   "coding-interview-prep": {
     "title": "Coding Interview Prep",
     "intro": [
       "If you're looking for free coding exercises to prepare for your next job interview, we've got you covered.",
       "This section contains hundreds of coding challenges that test your knowledge of algorithms, data structures, and mathematics. It also has a number of take-home projects you can use to strengthen your skills, or add to your portfolio."
     ],
-    "note": "",
+    "note": "The Project Euler Project has been moved to it's own course. Go back to curriculum to see the list of courses we offer.",
     "blocks": {
       "algorithms": {
         "title": "Algorithms",
@@ -652,14 +929,73 @@
         "title": "Rosetta Code",
         "intro": [
           "Level up your creative problem solving skills with these free programming tasks from the classic Rosetta Code library.",
-          "These challenges can prove to be difficult, but they will push your algorithm logic to new heights."
+          "These challenges can prove to be difficult, but they will push your algorithm logic to new heights.",
+          "<a href='https://rosettacode.org/wiki/Rosetta_Code' target='_blank' rel='noopener noreferrer nofollow'>Attribute: Rosetta Code</a>"
+        ]
+      }
+    }
+  },
+  "the-odin-project": {
+    "title": "The Odin Project",
+    "intro": [
+      "The Odin Project is one of those \"What I wish I had when I was learning\" resources. ",
+      "Not everyone has access to a computer science education or the funds to attend an intensive coding school and neither of those is right for everyone anyway.",
+      "This project is designed to fill in the gap for people who are trying to hack it on their own but still want a high quality education."
+    ],
+    "blocks": {
+      "top-learn-html-foundations": {
+        "title": "Learn HTML Foundations",
+        "intro": ["A description is to be determined"]
+      },
+      "top-build-a-recipe-project": {
+        "title": "Learn HTML Foundations by Building a Recipe Page",
+        "intro": ["A description is to be determined"]
+      },
+      "top-learn-css-foundations": {
+        "title": "Learn CSS Foundations",
+        "intro": ["A description is to be determined"]
+      },
+      "top-learn-css-foundations-projects": {
+        "title": "Learn CSS Foundations Projects",
+        "intro": ["A description is to be determined"]
+      }
+    }
+  },
+  "project-euler": {
+    "title": "Project Euler",
+    "intro": [
+      "Complete the programming challenges below, from the massive Project Euler archives. These will harden your algorithm and mathematics knowledge.",
+      "These problems range in difficulty and, for many, the experience is inductive chain learning. That is, by solving one problem, it will expose you to a new concept that allows you to undertake a previously inaccessible problem. Can you finish them all?"
+    ],
+    "blocks": {
+      "project-euler-problems-1-to-100": {
+        "title": "Project Euler Problems 1 to 100",
+        "intro": [
+          "In this first set of challenges, you will use mathematical concepts like the Fibonacci sequence, prime number theory, and combinatorics to write efficient algorithms to solve these problems."
         ]
       },
-      "project-euler": {
-        "title": "Project Euler",
+      "project-euler-problems-101-to-200": {
+        "title": "Project Euler Problems 101 to 200",
         "intro": [
-          "Complete the programming challenges below, from the massive Project Euler archives. These will harden your algorithm and mathematics knowledge.",
-          "These problems range in difficulty and, for many, the experience is inductive chain learning. That is, by solving one problem, it will expose you to a new concept that allows you to undertake a previously inaccessible problem. Can you finish them all?"
+          "In this set of challenges, you'll build upon the skills you learned in the first part of the course and use more advanced concepts like vector computation, Pascal's pyramid, and the RSA algorithm to solve these problems efficiently."
+        ]
+      },
+      "project-euler-problems-201-to-300": {
+        "title": "Project Euler Problems 201 to 300",
+        "intro": [
+          "In this set of challenges, you'll continue to build upon the skills you learned earlier and use concepts like the binomial theorem, Hamming numbers, and the Collatz sequence to further develop your math and problem solving skills."
+        ]
+      },
+      "project-euler-problems-301-to-400": {
+        "title": "Project Euler Problems 301 to 400",
+        "intro": [
+          "Here you will continue to flex your mathematical and algorithmic skills as you use concepts such as combinatorial game theory, bitwise operations, and Golomb's self-describing sequence to develop efficient solutions to these problems."
+        ]
+      },
+      "project-euler-problems-401-to-480": {
+        "title": "Project Euler Problems 401 to 480",
+        "intro": [
+          "In this final set of challenges, you will need draw upon everything you learned up to this point and use advanced concepts like unitary divisors, the Kaprekar routine, and much more to solve these complex problems."
         ]
       }
     }
@@ -669,11 +1005,16 @@
     "browse-other": "Browse our other free certifications\n(we recommend doing these in order)",
     "courses": "Courses",
     "steps": "Steps",
-    "expand": "Expand courses",
-    "collapse": "Collapse courses",
+    "expand": "Expand course",
+    "collapse": "Collapse course",
     "legacy-header": "Legacy Courses",
     "legacy-desc": "These courses are no longer part of the certification path, but are still available for you to further your learning.",
-    "viewing-upcoming-change": "You are looking at a beta page. ",
-    "go-back-to-learn": "Go back to the stable version of the curriculum."
+    "legacy-go-back": "Go to the current version of the curriculum.",
+    "course-maintenance": "These courses are undergoing maintenance. If they are not working, you can learn how to run them locally at <0>https://www.freecodecamp.org/news/how-to-run-freecodecamps-relational-databases-curriculum-using-docker-vscode-and-coderoad</0>.",
+    "progress-wont-save": "Your progress will not be saved to your freeCodeCamp account when running them locally.",
+    "go-back-to-learn": "Go back to the stable version of the curriculum.",
+    "read-database-cert-article": "Please read this forum post before proceeding.",
+    "enable-cookies": "You must enable third-party cookies before starting.",
+    "english-only": "The courses in this section are only available in English. We are only able to translate the titles and introductions at the moment, not the lessons themselves."
   }
 }

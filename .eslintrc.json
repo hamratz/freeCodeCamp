@@ -17,6 +17,7 @@
     "plugin:jsx-a11y/recommended",
     "prettier"
   ],
+  "plugins": ["no-only-tests", "filenames-simple"],
   "globals": {
     "Promise": true,
     "window": true,
@@ -31,10 +32,23 @@
     }
   },
   "rules": {
-    "import/named": 2,
-    "import/no-named-as-default": 0,
-    "import/no-named-as-default-member": 0,
-    "import/order": 2
+    "import/named": "error",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/order": "error",
+    "import/no-cycle": [2, { "maxDepth": 2 }],
+    "react/prop-types": "off",
+    "no-only-tests/no-only-tests": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "filenames-simple/naming-convention": ["warn"]
   },
   "overrides": [
     {
@@ -42,9 +56,15 @@
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": [
+          "./client/tsconfig.json",
           "./tsconfig.json",
+          "./api/tsconfig.json",
           "./config/tsconfig.json",
-          "./tools/ui-components/tsconfig.json"
+          "./tools/ui-components/tsconfig.json",
+          "./utils/tsconfig.json",
+          "./web/tsconfig.json",
+          "./curriculum-server/tsconfig.json",
+          "./cypress/tsconfig.json"
         ]
       },
       "extends": [
@@ -62,7 +82,20 @@
             "leadingUnderscore": "allow",
             "trailingUnderscore": "allow"
           },
-
+          {
+            "selector": [
+              "classProperty",
+              "objectLiteralProperty",
+              "typeProperty",
+              "classMethod",
+              "objectLiteralMethod",
+              "typeMethod",
+              "accessor",
+              "enumMember"
+            ],
+            "format": null,
+            "modifiers": ["requiresQuotes"]
+          },
           {
             "selector": "variable",
             "format": ["camelCase", "UPPER_CASE", "PascalCase"],
@@ -113,6 +146,16 @@
       "globals": {
         "cy": true,
         "Cypress": true
+      }
+    },
+    {
+      "files": ["web/**/*.tsx"],
+      "extends": ["plugin:react/jsx-runtime"]
+    },
+    {
+      "files": ["**/api-server/**/*", "**/404.*"],
+      "rules": {
+        "filenames-simple/naming-convention": "off"
       }
     }
   ]

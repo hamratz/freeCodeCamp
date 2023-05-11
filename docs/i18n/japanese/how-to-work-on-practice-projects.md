@@ -1,123 +1,136 @@
 # プラクティスプロジェクトに貢献する
 
-`tools/challenge-helper-scripts` フォルダには、freeCodeCamp プロジェクトベースのカリキュラムの作成とメンテナンスを容易にするためのツールが含まれています。
+Our practice projects use a step-based approach to teach concepts to campers. A project will consist of multiple files, which we refer to as **"steps"**. These files are named by the challenge ID, to avoid issues with the translation flow. Unfortunately, this makes it difficult to find the file associated with a specific step.
 
-## 新規プロジェクトを作成する
+We've built a challenge editor tool that helps remedy this. This tool allows you to navigate the available projects, and the steps for each project (in order). There's also an embedded code editor you can use to work on the files directly.
 
-`npm run create-project` を実行します。 これにより、プロセスをガイドするコマンドライン UI が開きます。 そうすると、英語のカリキュラムに新しいチャレンジがあるはずですので、プロジェクトの最初のステップに使用できます。 例えば、レスポンシブ Web デザイン認定講座で `test-project` というプロジェクトを作成した場合、`curriculum/challenges/english/01-responsive-web-design/test-project` になります。
+## Using the Challenge Editor
 
-新しいステップを作成したい場合は、以下のツールでそのプロセスを簡素化できます。
+These instructions will tell you how to use our challenge editor tool to work on the practice projects.
 
-## 次のステップを作成する
+### Starting the Editor
 
-一時スクリプトにより `step-xxx.md` と付番される最後のステップに基づいて、次のステップを自動的に追加します。`xxx` は最後のステップの 3 桁のステップ数を表します。 チャレンジシードコードは、前のステップのチャレンジシードコードを使用します。このシードコードでは編集可能なリージョンマーカー (ERM) が削除されています。
+To start the editor, make sure you are in the root freeCodeCamp directory. Then, run `pnpm run challenge-editor` to start both the client and the API that powers the editor.
 
-**注: ** このスクリプトは [ステップの並べ替え](#reorder-steps) も実行します。
+The client will run on port `3300`, so you can access it at `http://localhost:3300`. The API runs on port `3200`, to avoid conflicts with the learn client and server. This will allow you to run the freeCodeCamp application at the same time as the editor, so you can test your changes locally.
 
-### スクリプトを実行する方法
+### Navigating the Editor
 
-1. プロジェクトのディレクトリに変更します。
-2. 以下の npm コマンドを実行します。
+The default view will list the available `superblocks` - these are the certifications. Click on the certification link you want to work on.
 
-```bash
-npm run create-next-step
-```
+This will take you to the list of blocks. These are the practice projects. Click on the project link you want to work on.
 
-## 空のステップを作成する
+This will take you to a list of steps for the project. If you are working on an existing step, you can click on the step link to open the editor. If you are adding or removing steps, click the `Use the step tools` link to switch to the step tools for that challenge.
 
-一時スクリプトにより、特定の開始ステップ番号に指定されたステップ数を自動的に追加します。 作成された全ステップのチャレンジシードコードは空になります。
+### Editing Steps
 
-**注: ** このスクリプトは [ステップの並べ替え](#reorder-steps) も実行します。
+When you click on a step, you'll be taken to the editor. This is a basic text editor that offers syntax highlighting.
 
-### スクリプトを実行する方法
+After you have made your changes, click the `Save Changes` button to save your changes. You will get a browser alert letting you know that your changes are ready to commit. Note that you'll need to use `git` manually to stage and commit your files - this tool will not do that for you.
 
-1. プロジェクトのディレクトリに変更します。
-2. 以下の npm コマンドを実行します。
+### Step Tools
 
-```bash
-npm run create-empty-steps start=X num=Y # where X is the starting step number and Y is the number of steps to create.
-```
+When you click the `Use the step tools` link, you'll be taken to the step tools page. This allows you to add or remove steps from the project.
 
-## 中間ステップを作成する
+#### Create Next Step
 
-一時スクリプトにより、 2 つの既存の連続したステップの間に自動的に新しいステップを追加します。 チャレンジシードコードは、既存の開始ステップのチャレンジシードコードを使用します。このシードコードでは編集可能なリージョンマーカー (ERM) が削除されています。
+Clicking this button will add a new step at the end of the project. This step will use the previous step's code as the seed.
 
-**注: ** このスクリプトは [ステップの並べ替え](#reorder-steps) も実行します。
+#### Create Empty Steps
 
-### スクリプトを実行する方法
+Enter the number of steps you want to add in the input. Then, clicking the button will create that many empty steps at the end of the project.
 
-1. プロジェクトのディレクトリに変更します。
-2. 以下の npm コマンドを実行します。
+#### Insert Step
 
-```bash
-npm run create-step-between start=X # where X is the starting step number
-```
+Enter the step number that you want to add. Then, click the `Insert Step` button to add the step. The following steps will be re-ordered.
 
-## ステップを削除する
+#### Delete Step
 
-一時スクリプトにより、既存のステップを削除して、プロジェクトフォルダー内の残りのステップファイルを並べ替えるます。また、プロジェクトの `meta.json` 内の `challengeOrder` プロパティ配列を、新しいステップ順序で更新します。
+Enter the step number you want to delete. Then click the `Delete Step` button to remove that step. This will automatically update the step numbers for the remaining steps.
 
-### スクリプトを実行する方法
+#### Update Step Titles
 
-1. プロジェクトのディレクトリに変更します。
-2. 以下の npm コマンドを実行します。
+You should not have to use this tool unless you've manually deleted or added steps. This tool will reorder the step numbers.
 
-```bash
-npm run delete-step num=x # where x is the step number to be deleted.
-```
+## Using the Scripts Manually
 
-## ステップを並べ替える
+If you want to work on the steps manually, in your local IDE, you can run the step management scripts directly.
 
-一時スクリプトにより、ファイル名に基づいて、プロジェクトのマークダウンファイル内のステップファイルを自動的に並べ替えます。 また、プロジェクトの `meta.json` 内の `challengeOrder` プロパティ配列を、新しいステップ順序で更新します。
+The `tools/challenge-helper-scripts` folder contains tools to help facilitate the creation and maintenance of the freeCodeCamp project-based curriculum.
 
-### 作業例
+### Create a New Project
 
-例えば、次のプロジェクト構造から始めるとします。
+Change directory to `tools/challenge-helper-scripts` and run `pnpm run create-project`. This opens up a command line UI that guides you through the process. Once that has finished, there should be a new challenge in the English curriculum that you can use for the first step of the project. For example, if you created a project called `test-project` in the Responsive Web Design certification, it would be in `curriculum/challenges/english/01-responsive-web-design/test-project`.
 
-```bash
-step-001.md
-step-002.md
-step-003.md
-step-004.md
-step-005.md
-step-006.md
-```
+If you want to create new steps, the following tools simplify that process.
 
-ある時点で、ステップが不要になったため `step-002.md` を削除する必要があると判断します。 また、`step-004.md` を 1 つではなく 3 つのステップに分解することにします。
+### create-next-step
 
-この構造を再構築するには、`step-002.md` を削除し、 `step-004a.md` と `step-004b.md` を追加する必要があります。 新しいフォルダ構造は次のようになります。
+A one-off script that will automatically add the next step based on the last step in the project. The challenge seed code will use the previous step's challenge seed code.
 
-```bash
-step-001.md
-step-003.md
-step-004.md
-step-004a.md
-step-004b.md
-step-005.md
-step-006.md
-```
-
-ここで、ファイル名は `step-001.md` から `step-007.md` である必要があります。これは、1 つ削除して、2つ追加したので、正味差は1ファイルだからです。 また、削除されたステップまたは追加されたステップの各ファイルのフロントマターは、`title` キー値を新しいステップ数と一致させた上で変更する必要があります。 例えば、`step-3.md` を `step-2.md` に変更した後、 `step-2.md` のタイトルを `Step 03` から `Step 02` へ変更します。
-
-以下は、実際のプロジェクトフォルダの変更です。
-
-```bash
-step-001.md
-step-003.md renamed to step-002.md and title changes to "Step 2"
-step-004.md renames to step-003.md and title changes to "Step 3"
-step-004a.md renames to step-004.md and title changes to "Step 4"
-step-004b.md renames to step-005.md and title changes to "Step 5"
-step-005.md renames to step-006.md and title changes to "Step 6"
-step-006.md renames to step-007.md and title changes to "Step 7"
-```
-
-上記の変更に伴い、プロジェクトの `meta.json` ファイル内の `challengeOrder` キーは、新しいステップの順序を反映する必要があります。 これは、ステップの削除や追加に伴い、その下にある各ステップが、影響を受けるステップのチャレンジ `id` に関連する `title` を変更するためです。
-
-### スクリプトを実行する方法
+#### How to Run the Script
 
 1. プロジェクトのディレクトリに変更します。
-2. 以下の npm コマンドを実行します。
+2. Run the following command:
 
 ```bash
-npm run reorder-steps
+pnpm run create-next-step
+```
+
+### create-empty-steps
+
+A one-off script that automatically adds a specified number of steps. The challenge seed code for all steps created will be empty.
+
+**Note:** This script also runs [update-step-titles](#update-step-titles).
+
+#### How to Run the Script
+
+1. プロジェクトのディレクトリに変更します。
+2. Run the following command:
+
+```bash
+pnpm run create-empty-steps X # where X is the number of steps to create.
+```
+
+### insert-step
+
+A one-off script that automatically adds a new step at a specified position, incrementing all subsequent steps (both their titles and in their meta.json). The challenge seed code will use the previous step's challenge seed code with the editable region markers (ERMs) removed.
+
+**Note:** This script also runs [update-step-titles](#update-step-titles).
+
+#### How to Run the Script
+
+1. プロジェクトのディレクトリに変更します。
+2. Run the following command:
+
+```bash
+pnpm run insert-step X # where X is the position to insert the new step.
+```
+
+### delete-step
+
+A one-off script that deletes an existing step, decrementing all subsequent steps (both their titles and in their meta.json)
+
+**Note:** This script also runs [update-step-titles](#update-step-titles).
+
+#### How to Run the Script
+
+1. プロジェクトのディレクトリに変更します。
+2. Run the following command:
+
+```bash
+pnpm run delete-step X # where X is the step number to be deleted.
+```
+
+### update-step-titles
+
+A one-off script that automatically updates the frontmatter in a project's markdown files so that they are consistent with the project's meta.json. It ensures that each step's title (and dashedName) match the meta's challengeOrder.
+
+#### How to Run the Script
+
+1. プロジェクトのディレクトリに変更します。
+2. Run the following command:
+
+```bash
+pnpm run update-step-titles
 ```

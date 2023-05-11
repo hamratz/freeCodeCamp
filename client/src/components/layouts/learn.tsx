@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { Loader } from '../../components/helpers';
+import { tryToShowDonationModal } from '../../redux/actions';
 import {
-  userSelector,
   userFetchStateSelector,
   isSignedInSelector,
-  tryToShowDonationModal
-} from '../../redux';
+  userSelector
+} from '../../redux/selectors';
 import DonateModal from '../Donation/donation-modal';
 import createRedirect from '../create-redirect';
 
@@ -50,6 +50,7 @@ type LearnLayoutProps = {
   user: User;
   tryToShowDonationModal: () => void;
   children?: React.ReactNode;
+  hasEditableBoundaries?: boolean;
 };
 
 function LearnLayout({
@@ -57,7 +58,8 @@ function LearnLayout({
   fetchState,
   user,
   tryToShowDonationModal,
-  children
+  children,
+  hasEditableBoundaries
 }: LearnLayoutProps): JSX.Element {
   useEffect(() => {
     tryToShowDonationModal();
@@ -86,9 +88,12 @@ function LearnLayout({
       <Helmet>
         <meta content='noindex' name='robots' />
       </Helmet>
-      <main id='learn-app-wrapper'>{children}</main>
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-      /* @ts-ignore  */}
+      <main
+        id='learn-app-wrapper'
+        {...(hasEditableBoundaries && { 'data-has-editable-boundaries': true })}
+      >
+        {children}
+      </main>
       <DonateModal />
     </>
   );

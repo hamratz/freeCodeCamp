@@ -3,17 +3,22 @@
  * Any ref to fixCompletedChallengesItem should be removed post
  * a db migration to fix all completedChallenges
  *
+ * NOTE: it's been 4 years, so any active users will have been migrated. We
+ * should still try to migrate the rest at some point.
+ *
  */
 import debug from 'debug';
 import dedent from 'dedent';
-import { isEmpty, pick, omit, find, uniqBy } from 'lodash';
+import { isEmpty, pick, omit, uniqBy } from 'lodash';
 import { ObjectID } from 'mongodb';
-import { Observable } from 'rx';
 import isNumeric from 'validator/lib/isNumeric';
 import isURL from 'validator/lib/isURL';
 
+import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../../../../config/secrets';
+
 import { environment, deploymentEnv } from '../../../../config/env.json';
-import { fixCompletedChallengeItem } from '../../common/utils';
+import { fixPartiallyCompletedChallengeItem } from '../../common/utils';
 import { getChallenges } from '../utils/get-curriculum';
 import { ifNoUserSend } from '../utils/middleware';
 import {
@@ -58,6 +63,13 @@ export default async function bootChallenge(app, done) {
     backendChallengeCompleted
   );
 
+  api.post(
+    '/save-challenge',
+    send200toNonUser,
+    isValidChallengeCompletion,
+    saveChallenge
+  );
+
   router.get('/challenges/current-challenge', redirectToCurrentChallenge);
 
   const coderoadChallengeCompleted = createCoderoadChallengeCompleted(app);
@@ -77,7 +89,11 @@ const jsCertProjectIds = [
   'aa2e6f85cab2ab736c9a9b24'
 ];
 
-const multiFileCertProjectIds = getChallenges()
+const multifileCertProjectIds = getChallenges()
+  .filter(challenge => challenge.challengeType === 14)
+  .map(challenge => challenge.id);
+
+const savableChallenges = getChallenges()
   .filter(challenge => challenge.challengeType === 14)
   .map(challenge => challenge.id);
 
@@ -91,11 +107,11 @@ export function buildUserUpdate(
   let completedChallenge = {};
   if (
     jsCertProjectIds.includes(challengeId) ||
-    multiFileCertProjectIds.includes(challengeId)
+    multifileCertProjectIds.includes(challengeId)
   ) {
     completedChallenge = {
       ..._completedChallenge,
-      files: files.map(file =>
+      files: files?.map(file =>
         pick(file, ['contents', 'key', 'index', 'name', 'path', 'ext'])
       )
     };
@@ -103,51 +119,82 @@ export function buildUserUpdate(
     completedChallenge = omit(_completedChallenge, ['files']);
   }
   let finalChallenge;
-  const updateData = {};
-  const { timezone: userTimezone, completedChallenges = [] } = user;
+  const $push = {},
+    $set = {},
+    $pull = {};
+  const {
+    timezone: userTimezone,
+    completedChallenges = [],
+    needsModeration = false,
+    savedChallenges = []
+  } = user;
 
-  const oldChallenge = find(
-    completedChallenges,
+  const oldIndex = completedChallenges.findIndex(
     ({ id }) => challengeId === id
   );
-  const alreadyCompleted = !!oldChallenge;
+
+  const alreadyCompleted = oldIndex !== -1;
+  const oldChallenge = alreadyCompleted ? completedChallenges[oldIndex] : null;
 
   if (alreadyCompleted) {
     finalChallenge = {
       ...completedChallenge,
       completedDate: oldChallenge.completedDate
     };
+    $set[`completedChallenges.${oldIndex}`] = finalChallenge;
   } else {
-    updateData.$push = {
-      ...updateData.$push,
-      progressTimestamps: completedDate
-    };
     finalChallenge = {
       ...completedChallenge
     };
+    $push.progressTimestamps = completedDate;
+    $push.completedChallenges = finalChallenge;
   }
 
-  updateData.$set = {
-    completedChallenges: uniqBy(
-      [finalChallenge, ...completedChallenges.map(fixCompletedChallengeItem)],
-      'id'
-    )
-  };
+  if (savableChallenges.includes(challengeId)) {
+    const challengeToSave = {
+      id: challengeId,
+      lastSavedDate: completedDate,
+      files: files?.map(file =>
+        pick(file, ['contents', 'key', 'name', 'ext', 'history'])
+      )
+    };
+
+    const savedIndex = savedChallenges.findIndex(
+      ({ id }) => challengeId === id
+    );
+
+    if (savedIndex >= 0) {
+      $set[`savedChallenges.${savedIndex}`] = challengeToSave;
+      savedChallenges[savedIndex] = challengeToSave;
+    } else {
+      $push.savedChallenges = challengeToSave;
+      savedChallenges.push(challengeToSave);
+    }
+  }
+
+  // remove from partiallyCompleted on submit
+  $pull.partiallyCompletedChallenges = { id: challengeId };
 
   if (
     timezone &&
     timezone !== 'UTC' &&
     (!userTimezone || userTimezone === 'UTC')
   ) {
-    updateData.$set = {
-      ...updateData.$set,
-      timezone: userTimezone
-    };
+    $set.timezone = userTimezone;
   }
+
+  if (needsModeration) $set.needsModeration = true;
+
+  const updateData = {};
+  if (!isEmpty($set)) updateData.$set = $set;
+  if (!isEmpty($push)) updateData.$push = $push;
+  if (!isEmpty($pull)) updateData.$pull = $pull;
+
   return {
     alreadyCompleted,
     updateData,
-    completedDate: finalChallenge.completedDate
+    completedDate: finalChallenge.completedDate,
+    savedChallenges
   };
 }
 
@@ -204,6 +251,7 @@ export function isValidChallengeCompletion(req, res, next) {
     body: { id, challengeType, solution }
   } = req;
 
+  // ToDO: Validate other things (challengeFiles, etc)
   const isValidChallengeCompletionErrorMsg = {
     type: 'error',
     message: 'That does not appear to be a valid challenge submission.'
@@ -224,46 +272,60 @@ export function isValidChallengeCompletion(req, res, next) {
   return next();
 }
 
-export function modernChallengeCompleted(req, res, next) {
+export async function modernChallengeCompleted(req, res, next) {
   const user = req.user;
-  return user
-    .getCompletedChallenges$()
-    .flatMap(() => {
-      const completedDate = Date.now();
-      const { id, files, challengeType } = req.body;
 
-      const data = {
-        id,
-        files,
-        completedDate
-      };
+  try {
+    // This is an ugly way to update `user.completedChallenges`
+    await user.getCompletedChallenges$().toPromise();
+  } catch (e) {
+    return next(e);
+  }
 
-      if (challengeType === 14) {
-        data.isManuallyApproved = false;
-      }
+  const completedDate = Date.now();
+  const { id, files, challengeType } = req.body;
 
-      const { alreadyCompleted, updateData } = buildUserUpdate(user, id, data);
-      const points = alreadyCompleted ? user.points : user.points + 1;
-      const updatePromise = new Promise((resolve, reject) =>
-        user.updateAttributes(updateData, err => {
-          if (err) {
-            return reject(err);
-          }
-          return resolve();
-        })
-      );
-      return Observable.fromPromise(updatePromise).map(() => {
-        return res.json({
-          points,
-          alreadyCompleted,
-          completedDate
-        });
-      });
-    })
-    .subscribe(() => {}, next);
+  const completedChallenge = {
+    id,
+    files,
+    completedDate
+  };
+
+  // if multifile cert project
+  if (challengeType === 14) {
+    completedChallenge.isManuallyApproved = false;
+    user.needsModeration = true;
+  }
+
+  // We only need to know the challenge type if it's a project. If it's a
+  // step or normal challenge we can avoid storing in the database.
+  if (jsCertProjectIds.includes(id) || multifileCertProjectIds.includes(id)) {
+    completedChallenge.challengeType = challengeType;
+  }
+
+  const { alreadyCompleted, savedChallenges, updateData } = buildUserUpdate(
+    user,
+    id,
+    completedChallenge
+  );
+
+  const points = alreadyCompleted ? user.points : user.points + 1;
+
+  user.updateAttributes(updateData, err => {
+    if (err) {
+      return next(err);
+    }
+
+    return res.json({
+      points,
+      alreadyCompleted,
+      completedDate,
+      savedChallenges
+    });
+  });
 }
 
-function projectCompleted(req, res, next) {
+async function projectCompleted(req, res, next) {
   const { user, body = {} } = req;
 
   const completedChallenge = pick(body, [
@@ -283,67 +345,137 @@ function projectCompleted(req, res, next) {
     });
   }
 
-  return user
-    .getCompletedChallenges$()
-    .flatMap(() => {
-      const { alreadyCompleted, updateData } = buildUserUpdate(
-        user,
-        completedChallenge.id,
-        completedChallenge
-      );
+  // CodeRoad cert project
+  if (completedChallenge.challengeType === 13) {
+    const { partiallyCompletedChallenges = [], completedChallenges = [] } =
+      user;
 
-      const updatePromise = new Promise((resolve, reject) =>
-        user.updateAttributes(updateData, err => {
-          if (err) {
-            return reject(err);
-          }
-          return resolve();
-        })
-      );
-      return Observable.fromPromise(updatePromise).doOnNext(() => {
-        return res.json({
-          alreadyCompleted,
-          points: alreadyCompleted ? user.points : user.points + 1,
-          completedDate: completedChallenge.completedDate
-        });
+    const isPartiallyCompleted = partiallyCompletedChallenges.some(
+      challenge => challenge.id === completedChallenge.id
+    );
+
+    const isCompleted = completedChallenges.some(
+      challenge => challenge.id === completedChallenge.id
+    );
+
+    if (!isPartiallyCompleted && !isCompleted) {
+      return res.status(403).json({
+        type: 'error',
+        message: 'You have to complete the project before you can submit a URL.'
       });
-    })
-    .subscribe(() => {}, next);
+    }
+  }
+
+  try {
+    // This is an ugly hack to update `user.completedChallenges`
+    await user.getCompletedChallenges$().toPromise();
+  } catch (e) {
+    return next(e);
+  }
+
+  const { alreadyCompleted, updateData } = buildUserUpdate(
+    user,
+    completedChallenge.id,
+    completedChallenge
+  );
+
+  user.updateAttributes(updateData, err => {
+    if (err) {
+      return next(err);
+    }
+
+    return res.json({
+      alreadyCompleted,
+      points: alreadyCompleted ? user.points : user.points + 1,
+      completedDate: completedChallenge.completedDate
+    });
+  });
 }
 
-function backendChallengeCompleted(req, res, next) {
+async function backendChallengeCompleted(req, res, next) {
   const { user, body = {} } = req;
 
   const completedChallenge = pick(body, ['id', 'solution']);
   completedChallenge.completedDate = Date.now();
 
-  return user
-    .getCompletedChallenges$()
-    .flatMap(() => {
-      const { alreadyCompleted, updateData } = buildUserUpdate(
-        user,
-        completedChallenge.id,
-        completedChallenge
-      );
+  try {
+    await user.getCompletedChallenges$().toPromise();
+  } catch (e) {
+    return next(e);
+  }
 
-      const updatePromise = new Promise((resolve, reject) =>
-        user.updateAttributes(updateData, err => {
-          if (err) {
-            return reject(err);
-          }
-          return resolve();
-        })
-      );
-      return Observable.fromPromise(updatePromise).doOnNext(() => {
-        return res.json({
-          alreadyCompleted,
-          points: alreadyCompleted ? user.points : user.points + 1,
-          completedDate: completedChallenge.completedDate
-        });
-      });
-    })
-    .subscribe(() => {}, next);
+  const { alreadyCompleted, updateData } = buildUserUpdate(
+    user,
+    completedChallenge.id,
+    completedChallenge
+  );
+
+  user.updateAttributes(updateData, err => {
+    if (err) {
+      return next(err);
+    }
+
+    return res.json({
+      alreadyCompleted,
+      points: alreadyCompleted ? user.points : user.points + 1,
+      completedDate: completedChallenge.completedDate
+    });
+  });
 }
+
+async function saveChallenge(req, res, next) {
+  const user = req.user;
+  const { savedChallenges = [] } = user;
+  const { id: challengeId, files = [] } = req.body;
+
+  if (!savableChallenges.includes(challengeId)) {
+    return res.status(403).send('That challenge type is not savable');
+  }
+
+  const challengeToSave = {
+    id: challengeId,
+    lastSavedDate: Date.now(),
+    files: files?.map(file =>
+      pick(file, ['contents', 'key', 'name', 'ext', 'history'])
+    )
+  };
+
+  try {
+    await user.getSavedChallenges$().toPromise();
+  } catch (e) {
+    return next(e);
+  }
+
+  const savedIndex = savedChallenges.findIndex(({ id }) => challengeId === id);
+  const $push = {},
+    $set = {};
+
+  if (savedIndex >= 0) {
+    $set[`savedChallenges.${savedIndex}`] = challengeToSave;
+    savedChallenges[savedIndex] = challengeToSave;
+  } else {
+    $push.savedChallenges = challengeToSave;
+    savedChallenges.push(challengeToSave);
+  }
+
+  const updateData = {};
+  if (!isEmpty($set)) updateData.$set = $set;
+  if (!isEmpty($push)) updateData.$push = $push;
+
+  user.updateAttributes(updateData, err => {
+    if (err) {
+      return next(err);
+    }
+
+    return res.json({
+      savedChallenges
+    });
+  });
+}
+
+const codeRoadChallenges = getChallenges().filter(
+  ({ challengeType }) => challengeType === 12 || challengeType === 13
+);
 
 function createCoderoadChallengeCompleted(app) {
   /* Example request coming from CodeRoad:
@@ -351,21 +483,27 @@ function createCoderoadChallengeCompleted(app) {
    * req.headers: { coderoad-user-token: '8kFIlZiwMioY6hqqt...' }
    */
 
-  const { WebhookToken, User } = app.models;
+  const { UserToken, User } = app.models;
 
   return async function coderoadChallengeCompleted(req, res) {
-    const { 'coderoad-user-token': userWebhookToken } = req.headers;
+    const { 'coderoad-user-token': encodedUserToken } = req.headers;
     const { tutorialId } = req.body;
 
     if (!tutorialId) return res.send(`'tutorialId' not found in request body`);
 
-    if (!userWebhookToken)
+    if (!encodedUserToken)
       return res.send(`'coderoad-user-token' not found in request headers`);
 
-    const tutorialRepoPath = tutorialId?.split(':')[0];
-    const tutorialSplit = tutorialRepoPath?.split('/');
-    const tutorialOrg = tutorialSplit?.[0];
-    const tutorialRepoName = tutorialSplit?.[1];
+    let userToken;
+
+    try {
+      userToken = jwt.verify(encodedUserToken, jwtSecret)?.userToken;
+    } catch {
+      return res.send(`invalid user token`);
+    }
+
+    const tutorialRepo = tutorialId?.split(':')[0];
+    const tutorialOrg = tutorialRepo?.split('/')?.[0];
 
     // this allows any GH account to host the repo in development or staging
     // .org submissions should always be from repos hosted on the fCC GH org
@@ -374,44 +512,71 @@ function createCoderoadChallengeCompleted(app) {
         return res.send('Tutorial not hosted on freeCodeCamp GitHub account');
     }
 
-    const codeRoadChallenges = getChallenges().filter(
-      challenge => challenge.challengeType === 12
-    );
-
     // validate tutorial name is in codeRoadChallenges object
-    const tutorialInfo = codeRoadChallenges.find(tutorial =>
-      tutorial.url?.includes(tutorialRepoName)
+    const challenge = codeRoadChallenges.find(challenge =>
+      challenge.url?.endsWith(tutorialRepo)
     );
 
-    if (!tutorialInfo) return res.send('Tutorial name is not valid');
+    if (!challenge) return res.send('Tutorial name is not valid');
 
-    const tutorialMongoId = tutorialInfo?.id;
+    const { id: challengeId, challengeType } = challenge;
 
     try {
-      // check if webhook token is in database
-      const tokenInfo = await WebhookToken.findOne({
-        where: { id: userWebhookToken }
+      // check if user token is in database
+      const tokenInfo = await UserToken.findOne({
+        where: { id: userToken }
       });
 
-      if (!tokenInfo) return res.send('User webhook token not found');
+      if (!tokenInfo) return res.send('User token not found');
 
       const { userId } = tokenInfo;
 
-      // check if user exists for webhook token
+      // check if user exists for user token
       const user = await User.findOne({
         where: { id: userId }
       });
 
-      if (!user) return res.send('User for webhook token not found');
+      if (!user) return res.send('User for user token not found');
 
       // submit challenge
       const completedDate = Date.now();
+      const { completedChallenges = [], partiallyCompletedChallenges = [] } =
+        user;
 
-      const userUpdateInfo = buildUserUpdate(user, tutorialMongoId, {
-        id: tutorialMongoId,
-        completedDate
-      });
+      let userUpdateInfo = {};
 
+      const isCompleted = completedChallenges.some(
+        challenge => challenge.id === challengeId
+      );
+
+      // if CodeRoad cert project and not in completedChallenges,
+      // add to partiallyCompletedChallenges
+      if (challengeType === 13 && !isCompleted) {
+        const finalChallenge = {
+          id: challengeId,
+          completedDate
+        };
+
+        userUpdateInfo.updateData = {};
+        userUpdateInfo.updateData.$set = {
+          partiallyCompletedChallenges: uniqBy(
+            [
+              finalChallenge,
+              ...partiallyCompletedChallenges.map(
+                fixPartiallyCompletedChallengeItem
+              )
+            ],
+            'id'
+          )
+        };
+
+        // else, add to or update completedChallenges
+      } else {
+        userUpdateInfo = buildUserUpdate(user, challengeId, {
+          id: challengeId,
+          completedDate
+        });
+      }
       const updatedUser = await user.updateAttributes(
         userUpdateInfo?.updateData
       );

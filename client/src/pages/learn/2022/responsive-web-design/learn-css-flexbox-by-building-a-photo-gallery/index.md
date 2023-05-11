@@ -1,8 +1,7 @@
 ---
 title: Introduction to the Learn CSS Flexbox by Building a Photo Gallery Project
-block: Learn CSS Flexbox by Building a Photo Gallery
-superBlock: Responsive Web Design
-isBeta: true
+block: learn-css-flexbox-by-building-a-photo-gallery
+superBlock: 2022/responsive-web-design
 ---
 
 ## Introduction to the Learn CSS Flexbox by Building a Photo Gallery Project

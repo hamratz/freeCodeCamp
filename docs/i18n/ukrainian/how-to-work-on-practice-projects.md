@@ -1,123 +1,136 @@
-# How to Work on Practice Projects
+# Робота над практичними проєктами
 
-The `tools/challenge-helper-scripts` folder contains tools to help facilitate the creation and maintenance of the freeCodeCamp project-based curriculum.
+Для практичних проєктів ми використовуємо покроковий підхід, щоб кемпери вивчили основи. Проєкт складається з декількох файлів, які ми називаємо **кроками**. Ці файли називаються ідентифікаторами завдання, щоб уникнути проблем із перекладом. На жаль, через це важко знайти файл, пов’язаний з певним кроком.
 
-## Create a new project
+Ми створили редактор завдань, який допомагає розв’язати цю проблему. Цей інструмент дозволяє орієнтуватись на доступні проєкти та кроки (за порядком). Існує також вбудований редактор коду, який можна використовувати для безпосередньої роботи з файлами.
 
-Run `npm run create-project`. This opens up a command line ui that guides you through the process. Once that has finished, there should be a new challenge in the English curriculum that you can use for the first step of the project. For example, if you created a project called `test-project` in the Responsive Web Design certification, it would be in `curriculum/challenges/english/01-responsive-web-design/test-project`.
+## Використання редактора завдань
 
-If you want to create new steps, the following tools simplify that process.
+У цих інструкціях ви дізнаєтесь, як працювати над практичними проєктами за допомогою нашого редактора завдань.
 
-## create-next-step
+### Запуск редактора
 
-A one-off script that will automatically add the next step based on the last step numbered as `step-xxx.md` where `xxx` represents the 3-digit step number of the last step. The challenge seed code will use the previous step's challenge seed code with the editable region markers (ERMs) removed.
+Щоб запустити редактор, переконайтесь, що знаходитесь у кореневому каталозі freeCodeCamp. Потім запустіть `pnpm run challenge-editor`, щоб запустити клієнта та API, який підтримує редактор.
 
-**Note:** This script also runs [reorder-steps](#reorder-steps).
+Клієнт запуститься через порт `3300`, тому доступ можна отримати на `http://localhost:3300`. API запуститься через порт `3200`, щоб уникнути конфліктів з навчальним клієнтом та сервером. Це дозволить запустити програму freeCodeCamp одночасно з редактором, щоб ви могли перевірити свої зміни локально.
 
-### How to run script:
+### Навігація по редактору
 
-1. Change to the directory of the project.
-2. Run the following npm command:
+За замовчуванням ви побачите доступні `superblocks` — це сертифікації. Натисніть посилання сертифікації, над якою хочете працювати.
+
+Ви перейдете до списку блоків. Це практичні проєкти. Натисніть посилання проєкту, над яким хочете працювати.
+
+Ви перейдете до списку кроків проєкту. Якщо ви працюєте над наявним кроком, можна натиснути посилання кроку, щоб відкрити редактор. Якщо ви додаєте чи вилучаєте кроки, натисніть посилання `Use the step tools`, щоб перейти до інструментів для цього завдання.
+
+### Редагування кроків
+
+Якщо натиснути на крок, ви перейдете до редактора. Це базовий текстовий редактор, який пропонує підсвічування синтаксису.
+
+Після того, як ви застосували зміни, натисніть кнопку `Save Changes`, щоб зберегти зміни. Ви отримаєте сповіщення браузера про те, що ваші зміни готові до внесення. Зауважте, що вам потрібно буде вручну використати `git` для зміни та внесення файлів — інструмент не зробить цього.
+
+### Інструменти для кроків
+
+Якщо натиснути посилання `Use the step tools`, ви перейдете до сторінки з інструментами кроку. Це дозволить додавати чи вилучати кроки проєкту.
+
+#### Створення наступного кроку
+
+Натисніть цю кнопку, щоб додати новий крок в кінці проєкту. У цьому кроці використовуватиметься код попереднього кроку як зразок.
+
+#### Створення порожнього кроку
+
+Введіть кількість кроків, які хочете додати. Потім натисніть кнопку, що створить задану кількість кроків в кінці проєкту.
+
+#### Додавання кроку
+
+Введіть номер кроку, який хочете додати. Потім натисніть кнопку `Insert Step`, щоб додати крок. Порядок наступних кроків буде змінено.
+
+#### Видалення кроку
+
+Введіть номер кроку, який хочете видалити. Потім натисніть кнопку `Delete Step`, щоб видалити крок. Номери наступних кроків автоматично оновляться.
+
+#### Оновлення заголовків кроку
+
+Використовуйте цей інструмент лише тоді, коли додали чи вилучили крок вручну. Цей інструмент змінить порядок номерів кроків.
+
+## Використання скриптів вручну
+
+Якщо ви хочете працювати над кроками вручну у локальному IDE, ви можете запустити скрипти керування кроками.
+
+Папка `tools/challenge-helper-scripts` містить інструменти, які допоможуть зі створенням та обслуговуванням проєктноорієнтованої навчальної програми freeCodeCamp.
+
+### Створіть новий проєкт
+
+Змініть каталог на `tools/challenge-helper-scripts` та запустіть `pnpm run create-project`. Ця команда відкриє інтерфейс командного рядка, який допомагатиме. Після цього в англомовній навчальній програмі має з’явитися нове завдання, яке можна використовувати як перший крок проєкту. Наприклад, якщо ви створили проєкт під назвою `test-project` у сертифікації з адаптивного вебдизайну, завдання з’явиться у `curriculum/challenges/english/01-responsive-web-design/test-project`.
+
+Якщо ви хочете створити нові кроки, наступні інструменти допоможуть.
+
+### create-next-step
+
+Це разовий скрипт, який автоматично додасть наступний крок на основі останнього кроку проєкту. Початковий код завдання використовуватиме початковий код попереднього кроку.
+
+#### Як запустити скрипт
+
+1. Перейдіть до каталогу проєкту.
+2. Виконайте наступну команду:
 
 ```bash
-npm run create-next-step
+pnpm run create-next-step
 ```
 
-## create-empty-steps
+### create-empty-steps
 
-A one-off script that automatically adds a specified number of steps at a specific starting step number. The challenge seed code for all steps created will be empty.
+Це разовий скрипт, який автоматично додасть вказану кількість кроків. Початковий код буде порожнім для всіх створених кроків.
 
-**Note:** This script also runs [reorder-steps](#reorder-steps).
+**Примітка:** цей скрипт також запускає [update-step-titles](#update-step-titles).
 
-### How to run script:
+#### Як запустити скрипт
 
-1. Change to the directory of the project.
-2. Run the following npm command:
+1. Перейдіть до каталогу проєкту.
+2. Виконайте наступну команду:
 
 ```bash
-npm run create-empty-steps start=X num=Y # where X is the starting step number and Y is the number of steps to create.
+pnpm run create-empty-steps X # де X є кількістю кроків, які потрібно створити.
 ```
 
-## create-step-between
+### insert-step
 
-A one-off script that automatically adds a new step between two existing consecutive steps. The challenge seed code will use the existing starting step's challenge seed code with the editable region markers (ERMs) removed.
+Це разовий скрипт, який автоматично додає новий крок у визначеному місці, збільшуючи наступні кроки (їхні заголовки та meta.json). Початковий код завдання використовуватиме початковий код попереднього кроку, вилучивши маркери редагованих регіонів (ERM).
 
-**Note:** This script also runs [reorder-steps](#reorder-steps).
+**Примітка:** цей скрипт також запускає [update-step-titles](#update-step-titles).
 
-### How to run script:
+#### Як запустити скрипт
 
-1. Change to the directory of the project.
-2. Run the following npm command:
+1. Перейдіть до каталогу проєкту.
+2. Виконайте наступну команду:
 
 ```bash
-npm run create-step-between start=X # where X is the starting step number
+pnpm run insert-step X # де X є місцем, куди потрібно вставити новий крок.
 ```
 
-## delete-step
+### delete-step
 
-A one-off script that deletes an existing step and then reorders the remaining step files in the project's folder as well as updates the `challengeOrder` property array in the project's `meta.json` with the new order of the steps.
+Це разовий скрипт, який видаляє наявний крок, зменшуючи наступні кроки (їхні заголовки та meta.json)
 
-### How to run script
+**Примітка:** цей скрипт також запускає [update-step-titles](#update-step-titles).
 
-1. Change to the directory of the project.
-2. Run the following npm command:
+#### Як запустити скрипт
+
+1. Перейдіть до каталогу проєкту.
+2. Виконайте наступну команду:
 
 ```bash
-npm run delete-step num=x # where x is the step number to be deleted.
+pnpm run delete-step X # де X є номером кроку, який потрібно видалити.
 ```
 
-## reorder-steps
+### update-step-titles
 
-A one-off script that automatically reorders the step files in a project's markdown files based on the filename. It also updates the `challengeOrder` property array in the project's `meta.json` with the new order of the steps.
+Це разовий скрипт, який автоматично оновлює початковий матеріал у файлах розмітки проєкту, щоб вони відповідали meta.json. Він гарантує, що заголовки кроків (та dashedName) відповідають challengeOrder.
 
-### Working Example
+#### Як запустити скрипт
 
-Let's say you start with the following project structure:
-
-```bash
-step-001.md
-step-002.md
-step-003.md
-step-004.md
-step-005.md
-step-006.md
-```
-
-At some point you decide you need to delete `step-002.md`, because that step is no longer needed. Also, you decide to break down `step-004.md` into three steps instead of just one.
-
-To accomplish this restructure, you would need to delete `step-002.md` and then add a `step-004a.md` and a `step-004b.md`. The new folder structure would look like the following:
+1. Перейдіть до каталогу проєкту.
+2. Виконайте наступну команду:
 
 ```bash
-step-001.md
-step-003.md
-step-004.md
-step-004a.md
-step-004b.md
-step-005.md
-step-006.md
-```
-
-You now need the file names to be `step-001.md` through `step-007.md`, because you removed one but gained two more for a net difference of one file. Also, the frontmatter of each file below a deleted step or added step will need to be modified by making the `title` key value match the new step number. For example, after renaming `step-3.md` to `step-2.md`, you would need to change `step-2.md`'s title from `Step 03` to `Step 02`.
-
-See below for the actual project folder changes needed:
-
-```bash
-step-001.md
-step-003.md renamed to step-002.md and title changes to "Step 2"
-step-004.md renames to step-003.md and title changes to "Step 3"
-step-004a.md renames to step-004.md and title changes to "Step 4"
-step-004b.md renames to step-005.md and title changes to "Step 5"
-step-005.md renames to step-006.md and title changes to "Step 6"
-step-006.md renames to step-007.md and title changes to "Step 7"
-```
-
-Along with the above changes, the `challengeOrder` key in the project's `meta.json` file needs to reflect the new step order. This is needed because each step below a step deletion and/or step addition changes the `title` associated with each of the affected step's challenge `id`.
-
-### How to run script
-
-1. Change to the directory of the project.
-2. Run the following npm command:
-
-```bash
-npm run reorder-steps
+pnpm run update-step-titles
 ```

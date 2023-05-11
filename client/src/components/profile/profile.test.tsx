@@ -37,18 +37,16 @@ const userProps = {
     isBanned: false,
     isCheater: true,
     isHonest: true,
-    isGithub: true,
-    isLinkedIn: true,
-    isTwitter: true,
-    isWebsite: true,
     joinDate: 'string',
     linkedin: 'string',
     location: 'string',
     name: 'string',
     picture: 'string',
     points: 1,
+    savedChallenges: [],
     sendQuincyEmail: true,
     sound: true,
+    keyboardShortcuts: false,
     theme: Themes.Default,
     twitter: 'string',
     username: 'string',
@@ -70,7 +68,9 @@ const userProps = {
     isRespWebDesignCert: true,
     isSciCompPyCertV7: true,
     isDataAnalysisPyCertV7: true,
-    isMachineLearningPyCertV7: true
+    isMachineLearningPyCertV7: true,
+    isRelationalDatabaseCertV8: true,
+    isCollegeAlgebraPyCertV8: true
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   navigate: () => {}

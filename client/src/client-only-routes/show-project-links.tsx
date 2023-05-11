@@ -1,35 +1,42 @@
-import { find, first } from 'lodash-es';
+import { Table } from '@freecodecamp/react-bootstrap';
+import { find } from 'lodash-es';
 import React, { useState } from 'react';
-import '../components/layouts/project-links.css';
 import { Trans, useTranslation } from 'react-i18next';
-import ProjectModal from '../components/SolutionViewer/ProjectModal';
-import { Spacer, Link } from '../components/helpers';
-import { ChallengeFiles, CompletedChallenge, User } from '../redux/prop-types';
-import {
-  projectMap,
-  legacyProjectMap
-} from '../resources/cert-and-project-map';
+import { connect } from 'react-redux';
 
-import { maybeUrlRE } from '../utils';
+import { Link, Spacer } from '../components/helpers';
+import ProjectModal from '../components/SolutionViewer/project-modal';
+import { CompletedChallenge, User } from '../redux/prop-types';
+import { fullProjectMap } from '../resources/cert-and-project-map';
 
+import { SolutionDisplayWidget } from '../components/solution-display-widget';
+import ProjectPreviewModal from '../templates/Challenges/components/project-preview-modal';
+
+import { openModal } from '../templates/Challenges/redux/actions';
+
+import { regeneratePathAndHistory } from '../../../utils/polyvinyl';
+import '../components/layouts/project-links.css';
 interface ShowProjectLinksProps {
   certName: string;
   name: string;
   user: User;
+  openModal: (arg: string) => void;
 }
 
 type SolutionState = {
   projectTitle: string;
-  challengeFiles: ChallengeFiles;
-  solution: CompletedChallenge['solution'];
-  isOpen: boolean;
+  completedChallenge: CompletedChallenge | null;
+  showCode: boolean;
 };
 
 const initSolutionState: SolutionState = {
   projectTitle: '',
-  challengeFiles: null,
-  solution: '',
-  isOpen: false
+  completedChallenge: null,
+  showCode: false
+};
+
+const mapDispatchToProps = {
+  openModal
 };
 
 const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
@@ -41,72 +48,51 @@ const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
 
   const getProjectSolution = (projectId: string, projectTitle: string) => {
     const {
-      user: { completedChallenges }
+      user: { completedChallenges },
+      openModal
     } = props;
     const completedProject = find(
       completedChallenges,
       ({ id }) => projectId === id
-    ) as CompletedChallenge;
+    );
 
     if (!completedProject) {
       return null;
     }
 
-    const { solution, githubLink, challengeFiles } = completedProject;
-    const onClickHandler = () =>
+    const showUserCode = () =>
       setSolutionState({
         projectTitle,
-        challengeFiles,
-        solution,
-        isOpen: true
+        completedChallenge: completedProject,
+        showCode: true
       });
 
-    if (challengeFiles?.length) {
-      return (
-        <button
-          className='project-link-button-override'
-          data-cy={`${projectTitle} solution`}
-          onClick={onClickHandler}
-        >
-          {t('certification.project.solution')}
-        </button>
-      );
-    }
-    if (githubLink) {
-      return (
-        <>
-          <a href={solution ?? ''} rel='noopener noreferrer' target='_blank'>
-            {t('certification.project.solution')}
-          </a>
-          ,{' '}
-          <a href={githubLink} rel='noopener noreferrer' target='_blank'>
-            {t('certification.project.source')}
-          </a>
-        </>
-      );
-    }
-    if (maybeUrlRE.test(solution ?? '')) {
-      return (
-        <a
-          className='btn-invert'
-          href={solution ?? ''}
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          {t('certification.project.solution')}
-        </a>
-      );
-    }
+    const showProjectPreview = () => {
+      setSolutionState({
+        projectTitle,
+        completedChallenge: completedProject,
+        showCode: false
+      });
+      openModal('projectPreview');
+    };
+
     return (
-      <button className='project-link-button-override' onClick={onClickHandler}>
-        {t('certification.project.solution')}
-      </button>
+      <SolutionDisplayWidget
+        completedChallenge={completedProject}
+        dataCy={`${projectTitle} solution`}
+        projectTitle={projectTitle}
+        displayContext='certification'
+        showUserCode={showUserCode}
+        showProjectPreview={showProjectPreview}
+      ></SolutionDisplayWidget>
     );
   };
 
-  const renderProjectsFor = (certName: string) => {
+  const renderProjectsFor = (
+    certName: keyof typeof fullProjectMap | 'Legacy Full Stack'
+  ) => {
     if (certName === 'Legacy Full Stack') {
-      const legacyCerts = [
+      const certs = [
         { title: 'Responsive Web Design' },
         { title: 'JavaScript Algorithms and Data Structures' },
         { title: 'Front End Development Libraries' },
@@ -114,38 +100,33 @@ const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
         { title: 'Back End Development and APIs' },
         { title: 'Legacy Information Security and Quality Assurance' }
       ] as const;
-      return legacyCerts.map((cert, ind) => {
-        const mapToUse = (projectMap[cert.title] ||
-          legacyProjectMap[cert.title]) as { certSlug: string }[];
-        const { certSlug } = first(mapToUse) as { certSlug: string };
+
+      return certs.map((cert, ind) => {
+        const projects = fullProjectMap[cert.title];
+        const { certSlug } = projects[0];
         const certLocation = `/certification/${username}/${certSlug}`;
         return (
-          <li key={ind}>
-            <a
-              className='btn-invert project-link'
-              href={certLocation}
-              rel='noopener noreferrer'
-              target='_blank'
-            >
-              {t(`certification.project.title.${cert.title}`, cert.title)}
-            </a>
-          </li>
+          <tr key={ind}>
+            <td>
+              <Link className='project-link' to={certLocation} external>
+                {t(`certification.title.${cert.title}`, cert.title)}
+              </Link>
+            </td>
+          </tr>
         );
       });
     }
-    // @ts-expect-error Error expected until projectMap is typed
-    const project = (projectMap[certName] || legacyProjectMap[certName]) as {
-      link: string;
-      title: string;
-      id: string;
-    }[];
+
+    const project = fullProjectMap[certName];
     return project.map(({ link, title, id }) => (
-      <li key={id}>
-        <Link className='project-link' to={link}>
-          {t(`certification.project.title.${title}`, title)}
-        </Link>
-        : {getProjectSolution(id, title)}
-      </li>
+      <tr key={id}>
+        <td>
+          <Link to={link}>
+            {t(`certification.project.title.${title}`, title)}
+          </Link>
+        </td>
+        <td colSpan={2}>{getProjectSolution(id, title)}</td>
+      </tr>
     ));
   };
 
@@ -154,7 +135,26 @@ const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
     name,
     user: { username }
   } = props;
-  const { challengeFiles, isOpen, projectTitle, solution } = solutionState;
+  const { completedChallenge, showCode, projectTitle } = solutionState;
+
+  const challengeData: CompletedChallenge | null = completedChallenge
+    ? {
+        ...completedChallenge,
+        // // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        challengeFiles:
+          completedChallenge?.challengeFiles?.map(regeneratePathAndHistory) ??
+          null
+      }
+    : null;
+
+  const isCertName = (
+    maybeCertName: string
+  ): maybeCertName is keyof typeof fullProjectMap | 'Legacy Full Stack' => {
+    if (maybeCertName === 'Legacy Full Stack') return true;
+    return maybeCertName in fullProjectMap;
+  };
+  if (!isCertName(certName)) return <div> Unknown Certification</div>;
+
   return (
     <div>
       {t(
@@ -163,20 +163,33 @@ const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
           : 'certification.project.heading',
         { user: name }
       )}
-      <Spacer />
-      <ul>{renderProjectsFor(certName)}</ul>
-      <Spacer />
-      {isOpen ? (
-        <ProjectModal
-          challengeFiles={challengeFiles}
-          handleSolutionModalHide={handleSolutionModalHide}
-          isOpen={isOpen}
-          projectTitle={projectTitle}
-          // 'solution' is theoretically never 'null', if it a JsAlgoData cert
-          // which is the only time we use the modal
-          solution={solution as undefined | string}
-        />
-      ) : null}
+      <Spacer size='medium' />
+      <Table striped>
+        <thead>
+          <tr>
+            <th>
+              <span className='sr-only'>{t('settings.headings.certs')}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>{renderProjectsFor(certName)}</tbody>
+      </Table>
+      <Spacer size='medium' />
+      <ProjectModal
+        challengeFiles={completedChallenge?.challengeFiles ?? null}
+        handleSolutionModalHide={handleSolutionModalHide}
+        isOpen={showCode}
+        projectTitle={projectTitle}
+        // 'solution' is theoretically never 'null', if it a JsAlgoData cert
+        // which is the only time we use the modal
+        solution={completedChallenge?.solution as undefined | string}
+      />
+      <ProjectPreviewModal
+        challengeData={challengeData}
+        closeText={t('buttons.close')}
+        previewTitle={projectTitle}
+        showProjectPreview={true}
+      />
       <Trans i18nKey='certification.project.footnote'>
         If you suspect that any of these projects violate the{' '}
         <a
@@ -202,4 +215,4 @@ const ShowProjectLinks = (props: ShowProjectLinksProps): JSX.Element => {
 
 ShowProjectLinks.displayName = 'ShowProjectLinks';
 
-export default ShowProjectLinks;
+export default connect(null, mapDispatchToProps)(ShowProjectLinks);

@@ -1,8 +1,7 @@
 ---
 title: Introduction to the Learn CSS Grid by Building a Magazine Project
-block: Learn CSS Grid by Building a Magazine
-superBlock: Responsive Web Design
-isBeta: true
+block: learn-css-grid-by-building-a-magazine
+superBlock: 2022/responsive-web-design
 ---
 
 ## Introduction to the Learn CSS Grid by Building a Magazine Project

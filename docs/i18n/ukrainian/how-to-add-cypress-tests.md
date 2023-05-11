@@ -1,10 +1,10 @@
 # Як додати тести Cypress
 
-При внесенні змін до JavaScript, CSS або HTML, які можуть змінити функціональність або макет сторінки, важливо додати відповідні інтеграційні тести  [Cypress](https://docs.cypress.io).
+При внесенні змін до JavaScript, CSS або HTML, які можуть змінити функціональність або макет сторінки, важливо додати відповідні інтеграційні тести [Cypress](https://docs.cypress.io).
 
-Щоб дізнатися, як писати тести Cypress, або "специфікації", будь ласка, зверніться до офіційної [документації Cypress](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html).
+Щоб дізнатися, як писати тести Cypress, або «специфікації», будь ласка, зверніться до офіційної [документації Cypress](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html).
 
-## Where to add a test
+## Куди додати тест
 
 - Тести Cypress знаходяться в каталозі `./cypress`.
 
@@ -12,66 +12,73 @@
 
 ## Як проводити тести
 
-> [!NOTE] За користування GitPod, будь ласка, перегляньте [Cypress-GitPod Setup](/how-to-add-cypress-tests#cypress-gitpod-setup)
+> [!NOTE] Якщо ви використовуєте GitPod, див. [налаштування Cypress-GitPod](how-to-add-cypress-tests.md#cypress-gitpod-setup)
 
 ### 1. Переконайтеся, що MongoDB і клієнтські програми запущені
 
-- [Start MongoDB and seed the database](/how-to-setup-freecodecamp-locally#step-3-start-mongodb-and-seed-the-database)
+- [Запустіть MongoDB і заповнiть базу даних](how-to-setup-freecodecamp-locally.md#step-3-start-mongodb-and-seed-the-database)
 
-- [Start the freeCodeCamp client application and API server](/how-to-setup-freecodecamp-locally#step-4-start-the-freecodecamp-client-application-and-api-server)
+- [Запустіть клієнтський застосунок freeCodeCamp і сервер API](how-to-setup-freecodecamp-locally.md#step-4-start-the-freecodecamp-client-application-and-api-server)
 
-### 2. Запустіть тести cypress
+### 2. Запустіть тести Cypress
 
-To run tests against production builds, replace `dev` with `prd` below.
+Щоб запустити тести кінцевої збірки, замініть `dev` на `prd` нижче.
 
 - Щоб запустити всі тести в каталозі `./cypress`:
 
   ```console
-  npm run cypress:dev:run
+  pnpm run cypress:dev:run
   ```
 
-- Для запуску одного тесту:
+- Щоб запустити один тест:
 
   ```console
-  npm run cypress:dev:run -- --spec=cypress/pathToYourSpec/youSpecFileName.js
+  pnpm run cypress -- run --spec=cypress/<path_to_test_file>
   ```
 
-- Щоб створити збірку розробки, запустіть сервер розробки і виконайте всі існуючі тести cypress:
+  Наприклад:
 
   ```console
-  npm run e2e:dev:run
+  pnpm run cypress -- run --spec=cypress/e2e/default/landing.ts
+  ```
+
+- Щоб створити збірку розробки, запустіть сервер розробки і виконайте всі наявні тести cypress:
+
+  ```console
+  pnpm run e2e:dev:run
   ```
 
 ## Налаштування Cypress-GitPod
 
-### 1. Ensure Development Environment is Running
+### 1. Переконайтеся, що середовище розробки запущене
 
-If starting the GitPod environment did not automatically develop the environment:
+Якщо запуск середовища GitPod не розробив середовище автоматично:
 
-- Start the database
-
-```console
-mongod
-```
-
-- Seed the database
+- Дотримуйтесь [посібнику з налаштування MongoDB](https://www.mongodb.com/basics/get-started).
+- Створіть конфігураційний файл.
 
 ```console
-npm run seed
+pnpm run create:config
 ```
 
-- Develop the server and client
+- Заповніть базу даних
 
 ```console
-npm run develop
+pnpm run seed
 ```
 
-### 2. Install Cypress Build Tools
+- Розробіть сервер та клієнта
 
 ```console
-npm run cypress:install-build-tools
+pnpm run develop
 ```
 
-- When prompted in the terminal, select your keyboard layout by language/area
+### 2. Встановіть інструменти збірки Cypress
 
-Тепер, [Cypress може бути запущений](/how-to-add-cypress-tests#_2-run-the-cypress-tests)
+```console
+pnpm run cypress:install-build-tools
+```
+
+- Якщо керований в терміналі, виберіть розкладку клавіатури за мовою/регіоном
+
+Тепер [Cypress можна запустити](how-to-add-cypress-tests.md#_2-run-the-cypress-tests)

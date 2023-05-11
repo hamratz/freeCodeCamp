@@ -1,6 +1,6 @@
 ---
 id: 5a24c314108439a4d4036188
-title: 根据 Props 有条件地渲染
+title: 使用 Props 有条件地渲染
 challengeType: 6
 forumTopicId: 301405
 dashedName: render-conditionally-from-props
@@ -8,17 +8,17 @@ dashedName: render-conditionally-from-props
 
 # --description--
 
-到目前为止，已经看到了如何使用 `if/else`、`&&`和三元运算符（`condition ? expressionIfTrue : expressionIfFalse`）对渲染什么和何时渲染做出有条件的判定。 然而，还有一个重要的话题需要讨论，将这些概念中的任何一个或所有概念与另一个强大的 React 功能 props 结合起来。 使用 props 有条件地渲染代码在 React 开发人员中很常见——也就是说：他们使用给定 prop 的值来自动决定渲染什么。
+到目前为止，你已经了解了如何使用 `if/else`、`&&` 和三元运算符（`condition ? expressionIfTrue : expressionIfFalse`）来决定渲染什么和何时渲染。 然而，还有一个重要的话题需要讨论，它可以让你将这些概念中的一个或所有与另一个强大的 React 特性结合起来：props。 使用 props 有条件地渲染代码对于 React 开发人员来说非常常见——也就是说，他们使用给定 props 的值来自动决定要渲染什么。
 
 在这个挑战中，将设置一个子组件来根据 props 做出渲染决定。 可以使用三元运算符，但是可以看到过去几个挑战中涵盖的其他几个概念在这种情况下可能同样有用。
 
 # --instructions--
 
-代码编辑器有两个部分为你定义的组件：一个名为 `GameOfChance` 的父组件和一个名为 `Results` 的子组件。 它们被用来创建一个简单的游戏，用户按下按钮来看它们是赢还是输。
+代码编辑器有两个部分定义了的组件：一个名为 `GameOfChance` 的父组件和一个名为 `Results` 的子组件。 它们被用来创建一个简单的游戏，用户按下按钮来看它们是赢还是输。
 
-首先，需要一个简单的表达式，每次运行时都会随机返回一个不同的值。 可以使用 `Math.random()`。 每次调用此方法时，此方法返回 `0`（包括）和 `1`（不包括）之间的值。 因此，对于50/50的几率，请在表达式中使用 `Math.random() >= .5`。 从统计学上讲，这个表达式有 50％ 的几率返回 `true`，另外 50％ 返回 `false`。 在第 render 方法里，用此表达式替换 `null` 以完成变量声明。
+首先，需要一个简单的表达式，每次运行时都会随机返回一个不同的值。 可以使用 `Math.random()`。 每次调用此方法时，此方法返回 `0`（包括）和 `1`（不包括）之间的值。 因此，对于 50/50 的几率，请在表达式中使用 `Math.random() >= .5`。 从统计学上讲，这个表达式有 50％ 的几率返回 `true`，另外 50％ 返回 `false`。 在 render 方法里，用此表达式替换 `null` 以完成变量声明。
 
-现在了一个表达式，可以使用该表达式在代码中做出随机决策。 接下来，需要实现此功能。 将 `Results` 组件渲染为 `GameOfChance` 的子 组件，并将 `expression` 作为名为 `fiftyFifty` 的 prop 传入 。 在 `Results` 组件中，编写一个三元表达式来渲染 `h1` 元素的文本。`GameOfChance` 传来的 prop `fiftyFifty` 来决定渲染文本 `You Win!` 还是 `You Lose!`。 最后，确保 `handleClick()` 方法正确计算每个回合，以便用户知道他们玩过多少次。 这也可以让用户知道组件实际上已经更新，以防他们连续赢两次或输两次时自己不知道。
+现在你有了一个表达式，可以使用该表达式在代码中做出随机决策。 接下来，需要实现此功能。 将 `Results` 组件渲染为 `GameOfChance` 的子 组件，并将 `expression` 作为名为 `fiftyFifty` 的 prop 传入 。 在 `Results` 组件中，编写一个三元表达式来渲染 `h1` 元素的文本。`GameOfChance` 传来的 prop `fiftyFifty` 来决定渲染文本 `You Win!` 还是 `You Lose!`。 最后，确保 `handleClick()` 方法正确计算每个回合，以便用户知道他们玩过多少次。 这也可以让用户知道组件实际上已经更新，以防他们连续赢两次或输两次时自己不知道。
 
 # --hints--
 
@@ -123,7 +123,7 @@ assert.strictEqual(
 })();
 ```
 
-当 `GameOfChance` 组件第一次挂载到 DOM 上时，每次按钮被点击，都应该返回一个 `h1` 元素，元素中随机渲染 `You Win!` 或者 `You Lose!`。
+当 `GameOfChance` 组件第一次挂载到 DOM 上时，每次按钮被点击，都应该返回一个 `h1` 元素，元素中随机渲染 `You Win!` 或者 `You Lose!`。 注意：这有时可能会失败。 如果发生这种情况，请再试一次。
 
 ```js
 (() => {
@@ -265,6 +265,11 @@ class GameOfChance extends React.Component {
 # --solutions--
 
 ```jsx
+// We want this to be deterministic for testing purposes.
+const randomSequence = [true, false, false, true, true, false, false, true, true, false];
+let index = 0;
+const fiftyFifty = () => randomSequence[index++ % randomSequence.length];
+
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -290,11 +295,10 @@ class GameOfChance extends React.Component {
     });
   }
   render() {
-    const expression = Math.random() >= 0.5;
     return (
       <div>
         <button onClick={this.handleClick}>Play Again</button>
-        <Results fiftyFifty={expression} />
+        <Results fiftyFifty={fiftyFifty()} />
         <p>{'Turn: ' + this.state.counter}</p>
       </div>
     );

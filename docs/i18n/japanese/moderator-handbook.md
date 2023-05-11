@@ -1,8 +1,8 @@
 # 公式 freeCodeCamp モデレーターハンドブック
 
-このハンドブックは、私たちのコミュニティの様々な場所をモデレートするのに役立ちます。 GitHub、コミュニティフォーラム、チャットルーム、およびその他の公式コミュニティにおける Issue とプルリクエストスレッドに関する、会話とインタラクションを説明します。
+このハンドブックは、私たちのコミュニティの様々な場所をモデレートするのに役立ちます。 This covers conversations and interactions in issues and pull request threads on GitHub, the community forum, the chat rooms, and other official communities that we foster.
 
-> [!NOTE] すべての freeCodeCamp モデレーターは、コミュニティ全体のモデレーターです。 上記いずれかの場所を監督していただきます。
+> [!NOTE] すべての freeCodeCamp モデレーターは、コミュニティ全体のモデレーターです。 That means we trust you to oversee any of these places.
 
 最も興味のあるプラットフォームのモデレーターになることができます。 GitHub を支援するモデレーターもいれば、フォーラムを支援するモデレーターもいます。 すべての場所においてご活躍いただくモデレーターもいます。
 
@@ -12,24 +12,24 @@
 
 モデレーターにとって、気質は技術的スキルよりも重要です。
 
-聞きましょう。 役に立ちましょう。 権力を乱用してはいけません。
+聞きましょう。 Be helpful. 権力を乱用してはいけません。
 
 freeCodeCamp は包括的なコミュニティであり、それを維持する必要があります。
 
-私たちにはコミュニティ全体を支配する単一の行動規範があります。 ルールは少ないほど、覚えやすいものです。 [こちら](https://code-of-conduct.freecodecamp.org) にあるルールを読み、記憶に留めておいてください。
+We have a single [Code of Conduct](https://code-of-conduct.freecodecamp.org) that governs our entire community. ルールは少ないほど、覚えやすいものです。 [こちら](https://code-of-conduct.freecodecamp.org) にあるルールを読み、記憶に留めておいてください。
 
-> [!NOTE] GitHub、コミュニティフォーラム 、チャットサーバーのチームに、皆さんをモデレーターとして追加します。 モデレートしたいプラットフォームにアクセスできない場合は、[スタッフまでご連絡ください](FAQ.md#additional-assistance)。
+> [!NOTE] As a moderator, we would add you to one or more teams on GitHub, our community forums & chat servers. If you are missing access on a platform that you would like to moderate, please [reach out to a staff member](FAQ.md#additional-assistance).
 
 ## GitHub をモデレートする
 
 モデレーターは、GitHub 上で 2 つの主要な責任を負います。
 
-1. Issue のトリアージと対応
-2. プルリクエストのレビューとマージ (すなわち、QA)
+1. Triaging and responding to issues.
+2. Reviewing and merging pull requests (aka QA).
 
 ### GitHub Issue をモデレートする
 
-main の [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeCamp/issues) リポジトリを、すべてのリポジトリのための共通 Issue トラッカーとして使用しています。 毎日新しい問題が起きており、そのすべてをトリアージし、ラベル付けし、対処する必要があります。 オープンソースコードベースの貢献を始めるのに最適な場所です。
+We use our main [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeCamp/issues) repository as a common issue tracker for all of our repositories. We get new issues every day, all of which need to be triaged, labeled, and addressed. オープンソースコードベースの貢献を始めるのに最適な場所です。
 
 #### Issue のトリアージ
 
@@ -39,17 +39,17 @@ main の [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeC
 
 `"help wanted"` と `"first timers only"` のラベルに特に注意してください。 これらは、プルリクエストを行う潜在的なコントリビューターが入る可能性があるスレッドに追加されます。
 
-`"first timer only"` ラベルは些細な問題 (例: タイプミスの修正) に適用され、追加情報が必要となります。 この [返信テンプレート](moderator-handbook.md#first-timer-only-issues) をトリアージに使用できます。
+A `"first timers only"` label should be applied to a trivial issue (ie a typo fix) and should include additional information. この [返信テンプレート](moderator-handbook.md#初回者用の-issue) をトリアージに使用できます。
 
 #### 古く、期限切れで、不活発な Issue とプルリクエストをクローズする
 
 - 古い Issue または 古い PR とは、作成者が過去 21 日間 (最後の活動から 3 週間) アクティビティを行っていないものを指しますが、具体的にはモデレーターが作成者に対して追加情報 / 変更を要求してから上記既定の日数を経過したものを指します。
 
-- アクティビティは、`status: update needed` ラベルなどの PR とトリアージの更新をリクエストするコメントと定義されます。
+- Activity is defined as: Comments requesting an update on the PR and triages like `status: update needed` label, etc.
 
 - コントリビューターから支援もしくは時間の追加要求があった場合、それに対する回答を返し、該当する Issue または PR を後日改めて確認することができます。 いずれの場合でも、モデレーターは、未解決の PR を解決するために最善の判断を下す必要があります。
 
-> [!TIP] Issue をトリアージする際には、この標準の [返信テンプレート](moderator-handbook.md#reply-templates) リストを使用することをお勧めします。
+> [!TIP] Issue をトリアージする際には、この標準の [返信テンプレート](moderator-handbook.md#返信テンプレート) リストを使用することをお勧めします。
 
 ### プルリクエストをモデレートする
 
@@ -57,29 +57,29 @@ main の [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeC
 
 #### プルリクエストの種類
 
-1. **チャレンジ指示の編集**
+1. **Challenge instruction edits**
 
-   これは、チャレンジテキスト (説明、指示、またはテストテキスト) の変更です。
+   These are changes to the text of challenges - the description, instructions, or test text.
 
    GitHub で確認し、マージするかどうかを決定することもできます。 しかし、これについては少し注意する必要があります。 なぜなら、freeCodeCamp カリキュラムを通して何百万人もの方がこのテキストを見るからです。 テキストは、プルリクエストにより、冗長になることなく明確になっていますか？ 編集内容は、過度に知識をひけらかすものではなく、関連性の高いものになっていますか？ 可能な限り明確かつ短文のチャレンジにすることが目標であることを忘れないでください。 曖昧であってはなりません。 コントリビューターが、チャレンジにリソースへのリンクを追加しようとする場合もあります。
 
-   無効なプルリクエストをクローズして、この [返信テンプレート](moderator-handbook.md#closing-invalid-pull-requests) で送信します。
+   無効なプルリクエストをクローズして、この [返信テンプレート](moderator-handbook.md#無効なプルリクエストをクローズする-1) で返信します。
 
-   正しく変更されたら、必ず「LGTM」コメントで承認を残してください。 プルリクエストがモデレーターまたは開発チームから少なくとも 2 つの承認 (あなたを含む) を得たら、マージすることができます。
+   If the changes look good, please ensure to leave an approval with a "LGTM" (Looks Good To Me) comment. プルリクエストがモデレーターまたは開発チームから少なくとも 2 つの承認 (あなたを含む) を得たら、マージすることができます。
 
-2. **チャレンジコードの編集**
+2. **Challenge code edits**
 
-   これは、チャレンジシード、チャレンジソリューション、テスト文字列などのチャレンジのコードの変更です。
+   These are changes to the code in a challenge - the challenge seed, challenge solution, and test strings.
 
-   現在のソリューションでチャレンジテストに合格できるかどうか、また新しいコードでエラーが発生しないかどうか確認するために、プルリクエストを GitHub からプルダウンしローカルコンピュータまたは Gitpod でテストする必要があります。
+   These pull requests need to be pulled down from GitHub and tested on your local computer or Gitpod to make sure the challenge tests can still be passed with the current solution and to make sure the new code doesn't introduce any errors.
 
    コントリビューターの中には、衒学的で厄介なケースも網羅するために、追加テストを含めようとする人もいるかもしれません。 チャレンジがあまり複雑にならないように注意しなければなりません。 チャレンジとそのテストは可能な限りシンプルで直感的なものにします。 アルゴリズムチャレンジとインタビュー準備セクションは別として、学習者は約 2 分以内に各チャレンジを解決する必要があります。
 
-   無効なプルリクエストをクローズして、この [返信テンプレート](moderator-handbook.md#closing-invalid-pull-requests) で送信します。
+   無効なプルリクエストをクローズして、この [返信テンプレート](moderator-handbook.md#無効なプルリクエストをクローズする-1) で返信します。
 
-   正しく変更されたら、必ず「LGTM」コメントで承認を残してください。 プルリクエストがモデレーターまたは開発チームから少なくとも 2 つの承認 (あなたを含む) を得たら、マージすることができます。
+   If the changes look good, please ensure to leave an approval with an "LGTM" comment. プルリクエストがモデレーターまたは開発チームから少なくとも 2 つの承認 (あなたを含む) を得たら、マージすることができます。
 
-3. **プラットフォームの変更**
+3. **Platform changes**
 
    このコード編集により、freeCodeCamp プラットフォーム自体の機能を変更します。
 
@@ -91,41 +91,41 @@ main の [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeC
 
    一部の PR は、インテグレーションにより自動的に依存関係を更新します。 これらの PR をマージまたは承認してはなりません。 開発チームメンバーの 1 人が、このような自動化された PR のレビューとマージを行います。
 
-#### プルリクエストをレビュー、マージ、またはクローズする方法
+#### How to Review, Merge, or Close Pull Requests
 
-##### プルリクエストをアサインする
+##### Assign yourself to a Pull Request:
 
 まず最初に、レビューするプルリクエストを選択するときには、それを自分自身にアサインする必要があります。 GitHub インターフェースの右側の列にある「assignees」の下にある「assign yourself」リンクをクリックします。
 
 プルリクエストの種類に応じて、対応する上述のルールに従ってください。
 
-##### CI チェックに合格していることを確認する
+##### Ensure the CI Checks are Passing:
 
 プルリクエストをマージする前に、GitHub で、プルリクエストのすべてのチェックが合格 (緑色のチェックマーク) となっていることを確認してください。 チェックが不合格の場合は、原因を調べて明確にしてください。 テストに不合格となるような変更ですか？ PR がマージされる場合、サイトは正しく構築されますか？ これらのチェックはプラットフォームの安定性に不可欠です。
 
 > [!WARNING] CI/CD チェックが不合格の PR をマージすると、開発チームやコントリビューターを含むすべてのステークホルダーに問題を引き起こす可能性があります。
 
-##### マージの競合を処理する
+##### Handling Merge Conflicts:
 
-マージの競合が発生することがあります。
+Sometimes there will be a merge conflict.
 
-これは、別のプルリクエストがその同じファイルの同じ部分に変更を加えたことを意味します。 GitHub には、GitHub 上でこれらのマージ競合に対処するためのツールがあります。 皆さんはこれらの競合に対処することができます。 最善の判断をしてください。
+これは、別のプルリクエストがその同じファイルの同じ部分に変更を加えたことを意味します。 GitHub には、GitHub 上でこれらのマージ競合に対処するためのツールがあります。 皆さんはこれらの競合に対処することができます。 Use your best judgment.
 
 プルリクエストの変更は一番上にあり、main ブランチの変更は一番下にあります。 次のような、削除可能な冗長な情報がある場合もあります。 終了する前に、Git が競合エリアを表すために追加する `<<<<<<`、`======` および `>>>>>>` を削除してください。
 
 ご不明な点がある場合は、モデレーターまたは開発チームにお問い合わせください。
 
-##### 有効なプルリクエストをマージする
+##### Merging a Valid Pull Request:
 
 プルリクエストにマージの準備ができている (そして、少なくとも 2 人が承認済みで追加承認が必要ない) 場合、マージすることができます。 デフォルトの **"Squash and Merge"** オプションを使用してください。 これにより、すべてのプルリクエストがコミットされて単一のコミットにスカッシュされ、Git の履歴がより読みやすくなります。
 
-> そして、コントリビューターに感謝の意を示すため、それぞれの書き方でプルリクエストにコメントする必要があります。
+> You should then comment on the pull request, thanking the contributor in your own personal way!
 
 プルリクエストの作成者が、「新規コントリビューター」である場合、リポジトリに初めてマージされたプルリクエストに対しても祝意を伝える必要があります。 PR ボディの右上隅を見ると、新規コントリビューターであるかどうかを判断することができます。 以下のように、`First-time contributor` が表示されています。
 
 <details>
    <summary>
-      プルリクエストの新規コントリビューターバッジ (スクリーンショット)
+      First-time contributor badge on pull requests (screenshot)
    </summary>
 
    <br>
@@ -136,25 +136,25 @@ main の [`freeCodeCamp/freeCodeCamp`](https://github.com/freeCodeCamp/freeCodeC
 
 プルリクエストにセカンドオピニオンが必要な場合は、プルリクエストにコメントを残してください。そして、プルリクエストに 「discussing」ラベルを追加します。
 
-##### 無効なプルリクエストをクローズする
+##### Closing an Invalid Pull Request:
 
-大抵の場合、プルリクエストには手間がかかりません。 コントリビューターがプルリクエストテンプレートのチェックボックスにチェックを付けなかったり、「made changes」や「Update index.md」のように特徴のないプルリクエストのタイトルを使用したりした場合は、通常これをすぐに確認できます。
+大抵の場合、プルリクエストには手間がかかりません。 You can usually tell this immediately when the contributor didn't bother checking the checkboxes in the Pull Request Template or used a generic pull request title like "Made changes" or "Update index.md".
 
 コントリビューターが Web サイトへのリンクを追加しようとしたり、彼らが作成したライブラリを含めようとしたり、彼ら以外の誰にも役に立たない自由な編集をしようとする状況もあります。
 
-無効なプルリクエストをクローズして、これらの [返信テンプレート](moderator-handbook.md#closing-invalid-pull-requests) で送信します。
+You can close these invalid pull requests and reply to them with these [reply templates](moderator-handbook.md#closing-invalid-pull-requests).
 
-#### GitHub モデレーターに関するその他のガイドライン
+#### Other Guidelines for Moderators on GitHub
 
 freeCodeCamp のリポジトリへの書き込み権限はありますが、**freeCodeCamp リポジトリに直接コードをプッシュしてはいけません**。 すべてのコードは、リポジトリのフォークからのプルリクエストへという形で、freeCodeCamp のコードベースに入る必要があります。
 
 また、自分の PR を承認するべきではありません。 他の PR と同様に、別のモデレーターがレビューする必要があります。
 
-誰かが GitHub Issue に関する [行動規範](https://code-of-conduct.freecodecamp.org) に違反していることに気づいた場合、または悪意あるコンテンツやコードでプルリクエストをオープンしている場合は、問題のあるプルリクエストへのリンクを添付して `support[at]freecodecamp.org` までメールしてください。該当者を freeCodeCamp の GitHub 組織 にアクセスできないようにすることを検討します。
+If you notice anyone breaking the [Code of Conduct](https://code-of-conduct.freecodecamp.org) on GitHub issues, or opening pull requests with malicious content or code, email `support[at]freecodecamp.org` with a link to the offending pull request, and we can consider banning them from freeCodeCamp's GitHub organization entirely.
 
 ## フォーラムをモデレートする
 
-モデレーターとして、コミュニティを、誰もが助けを得ながら学ぶことができる楽しい場所に保つ支援をします。 フラグ付きの投稿やスパム、トピック外の内容、不適切な会話に対処します。
+As a moderator, you help keep our community an enjoyable place for anyone to learn and get help. フラグ付きの投稿やスパム、トピック外の内容、不適切な会話に対処します。
 
 フォーラムのモデレーターになると、「 [person] さんの初めての投稿です。ようこそコミュニティへ！」または「 [person] さんは長い間投稿していません。投稿があったら歓迎しましょう！」など、フォーラムメンバーに関する青色のモデレーターヒントが表示されるようになります。
 
@@ -162,246 +162,239 @@ freeCodeCamp のリポジトリへの書き込み権限はありますが、**fr
 
 これは、あなたが彼らを歓迎するとともに彼らを特別な気分にさせる機会です。 わずかにしか関与していない人が、次のスーパーヘルパーになり、コーディングの学習で多くの人を助けることになる可能性があります。 ほんの少しの思いやりが、善行の連鎖を引き起こすかもしれません。
 
-### フォーラムの投稿を削除する
+### Deleting Forum Posts
 
-フォーラムモデレーターは、ユーザーの投稿を削除できます。 以下の場合にのみ、投稿を削除する必要があります。
+Forum moderators can delete users' posts. 以下の場合にのみ、投稿を削除する必要があります。
 
 1. ポルノやグラフィカルに暴力的な画像を投稿している
 2. 本質的に悪意のあるリンクやコードを投稿し、それをクリックする他のキャンパーに害を与える可能性がある
-3. たくさんのスパムメッセージでスレッドを氾濫させている
+3. Someone has flooded a thread with a lot of spam messages.
+4. An account has been created, beyond a reasonable doubt, to spam.
 
-### スパムに対処する
+### Dealing with Spam
 
-最初のスパム投稿については、問題を説明するメッセージを送信し、必要に応じてリンクや投稿を削除します。 ユーザーのプロフィール欄に、あなたが行ったアクションを説明するメモを残してください。 問題が解決しない場合は、(ユーザー管理パネルのサイレンスオプションを使用して) ユーザーの投稿をブロックします。 行動規範を使用してユーザーに警告を送信します。 プライベートメッセージのボックスにチェックを入れ、メッセージが「正式な警告」であることを示します。
+For the first spam post of a legitimate user (ie. whose intent isn't to spam the forum but to learn/contribute to the forum), send them a message explaining the problem, and remove the link or post as appropriate. ユーザーのプロフィール欄に、あなたが行ったアクションを説明するメモを残してください。 問題が解決しない場合は、(ユーザー管理パネルのサイレンスオプションを使用して) ユーザーの投稿をブロックします。 Send the user a warning with the [Code of Conduct](https://code-of-conduct.freecodecamp.org). プライベートメッセージのボックスにチェックを入れ、メッセージが「正式な警告」であることを示します。
 
-モデレーターとして、[スタッフフォーラムセクション](https://forum.freecodecamp.org/c/mod-team/4) でインシデントについて質問したり報告したりできます。
+As a moderator, you can ask questions and report incidents in the [mod-team forum section](https://forum.freecodecamp.org/c/mod-team/4).
 
-### トピック外の会話に対処する
+### Dealing with Off-Topic Conversations
 
-間違った場所にあるように思われる投稿やトピックは、適切な場所へ再分類したり、名前を変更したりできます。
+Posts or topics that seem to be in the wrong place can be recategorized or renamed to whatever would be appropriate.
 
 例外的な状況として、モデレーターがディスカッションを複数のスレッドにフォークすることが適切である場合があります。
 
-問題や質問がある場合は、スタッフカテゴリでアクションを投稿し、モデレーターとしてのアクションを確認してもらいたい場合は、別のモデレーターにタグ付けします。
+Again, if you have any problems or questions, make a post with your actions in the `"Staff"` category, and tag another moderator if you want them to review your moderating actions.
 
-### 未成年のユーザー
+### Dealing with Posted Solutions
 
-私たちの [利用規約](https://www.freecodecamp.org/terms) では、freeCodeCamp ユーザーは少なくとも 13 歳である必要があります。 ユーザーが 13 歳未満であることを明らかにした場合、以下のメッセージをユーザーに送信し、そのフォーラムアカウントを削除します (削除できない場合は、アカウントを停止するだけで十分です)。
+If a user replies in a help thread for the freeCodeCamp curriculum with a solution, remove it and use the **Solution Instead of Help** canned reply (or a similar response in your own words).
 
-**ユーザーの freeCodeCamp アカウントも削除するには、`support[at]freecodecamp.org` にメールしてください。**
+If the OP (Original Poster) replies within a freeCodeCamp curriculum help thread with their final solution, blur it, and use the **Blurred Spoiler Solution** canned reply.
+
+If a user creates a thread asking for feedback on a solution, move the thread to the feedback subforum and blur the solution, as necessary. If the user is only posting the solution to show it off, then unlist the thread and use the **Solutions Thread** canned reply.
+
+### Underage Users
+
+Our [Terms of Service](https://freecodecamp.org/terms) require that freeCodeCamp users be at least 13 years of age. If a user reveals that they are under the age of 13, send them the message (below), suspend the account then **Email `support[at]freecodecamp.org` to delete the user's freeCodeCamp /learn and forum accounts as well (providing a link to the offending forum account).**
 
 ```markdown
-件名: 13 歳未満のユーザーは、利用規約によりフォーラムを利用できません
+SUBJECT: Users under 13 are not allowed to use the forum per our Terms of Service.
 
-あなたが 13 歳未満のユーザーの方であるということが判明しました。 [freeCodeCamp 利用規約](https://www.freecodecamp.org/news/terms-of-service) では、サイトまたはフォーラムを利用するには 13 歳以上である必要があります。 そのため、あなたの freeCodeCamp アカウントとフォーラムアカウントの両方を削除させていただきます。 この制限は米国の法律に準拠したものです。
+It has come to our attention that you are under 13 years of age. Per the [freeCodeCamp Terms of Service](https://freecodecamp.org/terms), you must be at least 13 years old to use the site or the forum. We will be deleting both your freeCodeCamp account and your forum account. This restriction keeps us in compliance with United States laws.
 
-13 歳以上になってからご参加いただけるのをお待ちしています。
+Please rejoin once you have reached at least 13 years of age.
 
-ご理解のほどよろしくお願いいたします。
+Thank you for understanding.
 ```
+
+### Moderating Via Cell Phone
+
+Moderating the forum is possible via a cell phone but you may encounter some usage quirks. This is not an exhaustive list.
+
+- When trying to include a "Canned reply" in a response, if the menu doesn't open (after clicking on the gear), click on the text area first then try it again.
+- The moderator's 'wrench' is at the bottom of the view-port but if you click it and cannot see the "Select Posts" button because it has scrolled out of view, you may need to try to scroll to it, though sometimes that doesn't work in which case moving to a desktop/laptop monitor may be needed.
+- Sometimes clicking on the three-dot menu below a post can hide the reply icon. Reload the page to get it back.
 
 ## Facebook をモデレートする
 
-私たちの [行動規範](https://code-of-conduct.freecodecamp.org/) に違反するようなものがあれば、すぐに削除してください。
+If you see anything that seems to break our [Code of Conduct](https://code-of-conduct.freecodecamp.org/), you should delete it immediately.
 
-自分が面白いと思うことを投稿する人が時々います。 彼らは、自分たちが言ったこと、シェアしたことが攻撃的だと解釈され得ることに気づいていません。 そのような投稿は削除する必要がありますが、必ずしもその人のアクセスを禁じるわけではありません。 投稿が削除されることにより、ユーザーは投稿内容が不適切だったと気づくことになるでしょう。
+Sometimes people will post things that they think are funny. They don't realize that what they said or what they shared could be interpreted as offensive. You should delete such posts, but not necessarily ban the person. Hopefully, the user will come to understand that what they posted was inappropriate because the post was deleted.
 
-しかし、それが文化的な違いや英語での誤解では説明できない酷い犯罪である場合もあります。 その場合、Facebook グループからメンバーをブロックすることを検討するべきです。
+But if it is an egregious offense that can't reasonably be attributed to a cultural difference or a misunderstanding of the English language. In that case, you should strongly consider blocking the member from the Facebook group.
 
-## チャットをモデレートする
+## Moderating Discord
 
-モデレーターは、以下のように、チャットサーバー上の [行動規範](https://code-of-conduct.freecodecamp.org/) の違反に対処します。
+Here's how moderators deal with violations of our [Code of Conduct](https://code-of-conduct.freecodecamp.org/) on our chat server:
 
-1. **ユーザーが、意図して行動規範に違反していることを確認します。**
+> [!NOTE] Camperbot serves as our moderation bot, and all of the commands use Discord's native slash command interface. You can see a list of all of the commands by typing `/` in any channel.
 
-   CoC のすべての違反がそのように意図されているわけではありません。 新しいキャンパーは、スパムであると気づかずに、支援のために大量のコードを投稿する場合もあります。 この場合、CodePen や Pastebin のようなサービスを使用してコードを貼り付けるようにキャンパーに依頼することができます。
+1. **Make sure the user intended to violate the [Code of Conduct](https://code-of-conduct.freecodecamp.org).**
 
-2. **キャンパーが、明確かつ意図的に行動規範に違反した場合、モデレーターは以下を実行します。**
+   Not all violations of the [Code of Conduct](https://code-of-conduct.freecodecamp.org) were intended as such. A new camper might post a large amount of code for help, unaware that this can be disruptive to the conversation. この場合、CodePen や Pastebin のようなサービスを使用してコードを貼り付けるようにキャンパーに依頼することができます。
 
-   チャットルームから問題のある人を退出させたり、ミュートしたりします。 誰かを退出させるまたはミュートするには、彼らのプロフィール画像上で左クリックして、3 つの点を選択します。 そして、「ルームから削除」を選択して退出させるか、「ユーザーをミュート」を選択してメッセージを送信できないようにします。 その後、#mod-log チャネルでその概要を報告します。 以下は、そのような概要の例です。
+2. **If the camper clearly and intentionally violates the [Code of Conduct](https://code-of-conduct.freecodecamp.org), the moderator will proceed as follows:**
 
-   ```
-   Kicked: _@username_
-   Reason(s): _Spamming, trolling_
-   Evidence: _One or more links to the offending message(s)_
-   ```
+   For minor offences, a warning may be issued with the `/warn` command. For more egregious offences, you can remove the member from the server temporarily with the `/kick` command, or permanently with the `/ban` command. In some cases, a member may just need some time to cool off and collect their thoughts - the `/mute` command allows you to prevent them from engaging with our community for a set period of time. A muted member can see the conversation, but cannot post messages or add reactions.
 
-3. **プライベートディスカッションを作成します。**
+   All moderation commands will take a `reason` parameter, which should be a short explanation of why the action was taken. Moderation actions done with the bot will be logged in `#mod-log`, which allows us all to stay on the same page. As such, we should avoid using Discord's built-in moderation tools, as they will not be logged.
+
+   > [!WARNING] The reason provided to a moderation command will also be included in the DM notification to the camper. Please remember to be professional here.
+
+3. **Creating a private discussion**
 
    キャンパーに関わる懸念事項に対して個人的に対処する必要のある場合があるかもしれません。 これは、DM を通じて行うべきではありません。あなたがあることを主張し、キャンパーがそれとは別のことを主張する状況につながる可能性があります。 代わりに、bot の機能を使用してプライベートディスカッションを作成してください。
 
-   - `!fCC private username` コマンドを呼び出します。ここでは、`username` が、キャンパーのチャットユーザー名です。
-   - bot は新しいチャンネルを作成し、上述のキャンパーと `Your Friendly Moderator` の役割を持つすべてのモデレーターをディスカッションに追加します。 透明性を保つため、すべてのモデレーターをチャンネルに追加しますが、支援を求めない限り、このコマンドを呼び出すモデレーターがキャンパーと接触する唯一の人であるべきです。
-   - ディスカッションが完了したら、_プライベートチャンネル_ にある `!fCC close` コマンドを呼び出し、bot をクローズしてそのチャンネルを削除します。
+   - Call the `/private` command, where `target` is the camper you want to open a private channel with.
+   - The bot will create a new channel, and add the mentioned camper and all moderators with the `Your Friendly Moderator` role. While all moderators are added to the channel for transparency, the moderator who calls this command should be the only one to interact with the camper unless they request assistance.
+   - When the conversation is complete, click the `❌ Close` button _on the first message in the private channel_ to have the bot close and delete that channel.
 
-4. **メッセージを削除します。**
+4. **Deleting messages**
 
-   モデレーターは、チャットサーバー上のメッセージを削除できます。 モデレーターは、以下 4 つの非常に特定の状況でのみこの機能を行使します。
+   Our moderation bot is configured to log deleted messages automatically in the `#mod-log` channel. If a message is not in line with our Code of Conduct, or otherwise not appropriate for our community, you are generally safe to delete it.
 
-   - ポルノやグラフィカルに暴力的な画像を投稿している
+   Note that if the message contains content that violates Discord's terms of service, you'll want to report it via https://dis.gd/report **prior to** deleting it.
 
-   - 本質的に悪意のあるリンクやコードを投稿し、それをクリックする他のキャンパーに害を与える可能性がある
+5. **Don’t threaten to take action**
 
-   - 非常に多くのスパムメッセージ (通常 bot も含む) を送ることでチャットを溢れさせ、チャットを完全に使用不能にしている
+   If a camper breaks the [Code of Conduct](https://code-of-conduct.freecodecamp.org), don’t threaten to take moderator action, and never warn them in public. Instead, talk to them privately using the bot's `/private` command, or use the bot's moderation commands.
 
-   - 広告や自己宣伝メッセージ / イメージ (ソーシャルメディア) を投稿している
+   If a violation was clearly unintended and doesn't warrant moderation action or private conversation, make the offending camper aware of their actions without making it come across as a warning.
 
-   他のすべての状況において (たとえ行動規範に違反している場合でも)、モデレーターは、メッセージを削除してはなりません。なぜなら、それらは重要な記録だからです。 メッセージを削除する場合は、まずスクリーンショットを撮ってください！ スクリーンショットは #mod-log チャンネルに記録することができます。
+   For example:
 
-   > [!NOTE] スクリーンショットを撮ることが違法となる素材がメッセージに含まれている場合、代わりにメッセージリンクをコピーしてください。そのメッセージリンクを @raisedadead へ提供して、Discord の Trust & Safety チームへ転送します。
+   - Camper posts a wall of code to request help:
 
-5. **@all または @here は使用しません。**
+     Moderator: **@username** Please use CodePen or Pastebin when posting large amounts of code.
 
-   どんな状況下でも、@all または @here を使用しないでください！ チャットルームにいるすべての人に通知が届いてしまいます。 場合によっては、何万人もの人々に通知が届きます。
+   - Or if you really have to explain why:
 
-   多くの人にアナウンスメントを見て欲しい場合は、誰もが読むことができるようにチャンネルに固定することができます。
+     Moderator: **@username** Please use CodePen or Pastebin when posting large amounts of code, because it disrupts the chat for everyone and could be considered spamming according to our [Code of Conduct](https://code-of-conduct.freecodecamp.org).
 
-6. **アクションを起こすと脅してはなりません。**
+   - For mild and unintentional violations of the [Code of Conduct](https://code-of-conduct.freecodecamp.org):
 
-   キャンパーが行動規範に違反した場合、モデレーターとしてアクションを起こすと言って脅してはなりません。また、公の場でキャンパーに対し警告を与えてはなりません。 代わりに、bot の `private` コマンドを使用して彼らと非公開で話をします。 あなたがその人を利用禁止 / 一時利用停止したという事実は、そのチャンネルで誰も知る必要はありません。 明らかに意図された違反ではなく、一時利用停止や個人的な会話を行うことが当然であるとは言えない場合には、警告としての印象を与えずに、違反しているキャンパーにその行動が問題であることを認識させます。 例を示します。
+     Moderator: This is a friendly reminder for everyone to follow the [Code of Conduct](https://code-of-conduct.freecodecamp.org): https://code-of-conduct.freecodecamp.org/
 
-   - キャンパーが大量のコードを投稿して支援を要求する場合
+6. **Don’t brag about being a moderator**
 
-     モデレーター: @username 大量のコードを投稿する場合は CodePen または Pastebin を使用してください。
+   Do not see yourself as above the community. **You are the community.** And the community has trusted you to help protect something rare that we all share - a _welcoming_ place for new developers.
 
-   - 上記対応の理由も説明する必要がある場合
+   If you brag about being a moderator, people may feel uneasy around you, in the same way that people may feel uneasy around a police officer, even if they’re doing nothing wrong. This is just human nature.
 
-     モデレーター: @username 大量のコードを投稿する場合は CodePen または Pastebin を使用してください。なぜなら、チャットを混乱させ、私たちの行動規範によりスパムとみなされる可能性があるからです。
+7. **Don’t contradict other moderators**
 
-   - 行動規範に対する軽微および意図しない違反
+   If you disagree with a moderator's action, talk with them in private or bring it up in the #mod-chat channel. Never override a moderator's action, and never contradict the other moderator(s) publicly. Instead, have a cool-headed discussion in `#mod-chat` and convince the moderator that they themselves should reverse their ban or change their PoV (Point of View).
 
-     モデレーター: 皆さんに遵守いただきたい行動規範を念のためお知らせいたします。https://code-of-conduct.freecodecamp.org/ をご覧ください。
+   _Remember: We’re all on the same team. We want to dignify the role of moderators and present a unified front._
 
-7. **モデレーターであることを自慢してはなりません。**
+8. **Talk with other moderators**
 
-   自分がコミュニティの上にいるとは思わないでください。 皆さんはコミュニティの中にいます。 コミュニティは、共有する素晴らしいもの、つまり、新しい開発者を _歓迎する_ 場所、を皆さんが保護してくれると信じています。
+   We have a `#mod-chat` room for moderators only. Use it! If you feel uncomfortable with handling a certain situation, ask other moderators for help. If you think something should be discussed, do it. You're part of the team, and we value every team member's input! Even if you totally disagree with anything in these guidelines or the [Code of Conduct](https://code-of-conduct.freecodecamp.org)!
 
-   モデレーターであることを自慢すれば、周囲の人は不安を感じるかもしれません。何も悪いことをしていなくても、警察官の周りにいると不安を感じるのと同じです。 それが人間の本質なのです。
+9. **Temporarily inactive**
 
-8. **他のモデレーターを批判してはなりません。**
+   If you're not going to be active as a Moderator for a while due to vacation, illness, or any other reason, make sure to let the others know in the `#mod-chat` channel. This is so we know if we can count on you to be regularly active on the server or not.
 
-   モデレーターのアクションに同意できない場合は、プライベートまたは #mod-chat チャンネルで相談してください。 モデレーターのアクションを無効にしないでください。他のモデレーターを公に批判してはいけません。 代わりに、`#mod-chat` で冷静なディスカッションを行い、利用禁止を取り消したり、視点を変えたりするように、そのモデレーターを説得します。
+## How to Become a Moderator
 
-   私たちは皆同じチームに所属していることを忘れないでください。 モデレーターの役割を尊重し、統一戦線の形を取りたいと考えています。
+Suppose you are helping people in the community consistently over time. In that case, our moderator team will eventually take notice, and one of them will mention you as a possible moderator to [our staff](https://forum.freecodecamp.org/g/Team). There are no shortcuts to becoming a moderator.
 
-9. **他のモデレーターと話をします。**
+If you are approved, we will add you to our moderator teams on [GitHub](https://github.com/orgs/freeCodeCamp/teams/moderators), [forum](https://forum.freecodecamp.org/g/moderators), chat, etc.
 
-   モデレーター専用ルームがあります。 それを使ってみましょう！ 特定の状況を処理することを不快に感じる場合は、他のモデレーターに支援を求めてください。 議論されるべきことがあると思ったら、議論してください。 皆さんはチームの一員であり、私たちはすべてのチームメンバーからのインプットを大切にしています！ 皆さんが、ガイドラインや行動規範に完全に同意していないとしても、皆さんからの意見を大切にします！
-
-10. **一時的に非アクティブにします。**
-
-    休暇、病気、または他の理由により、しばらくモデレーターとして活動できない場合は、`#mod-chat` チャンネルで他の人に知らせるようにしてください。 そうすることで、皆さんがサーバー上で通常どおり活動しているかどうかを認識することができます。
-
-## モデレーターになる方法
-
-皆さんが、長い期間一貫してコミュニティの人を支援しているとします。 その場合、やがてモデレーターチームが気づき、チームの誰かが、あなたのことをモデレーター候補として [私たちスタッフ](https://forum.freecodecamp.org/g/Team) に知らせることになります。 モデレーターになるための近道はありません。
-
-承認されると、皆さんは、[GitHub](https://github.com/orgs/freeCodeCamp/teams/moderators)、[フォーラム](https://forum.freecodecamp.org/g/moderators)、チャットなどのモデレーターチームに追加されます。
-
-> [!NOTE] GitHub の場合: モデレーターとして承認されると、Github リポジトリへの招待が届きます。 招待を承認するには、[freeCodeCamp GitHub Organization Invitation](https://github.com/orgs/freeCodeCamp/invitation) に進む必要があります。
+> [!NOTE] For GitHub: After you've been accepted as a moderator, you will receive a Github repository invitation. You'll need to head over towards [freeCodeCamp GitHub Organization Invitation](https://github.com/orgs/freeCodeCamp/invitation) to be able to accept the invitation.
 > 
-> これは、一部のリポジトリへの書き込みアクセスを提供するために必要となります。
+> This is required for us to be able to give you write access to some of our repositories.
 
-## 非アクティブモデレーターの削除方法
+## How Our Contributors Room Works
 
-非アクティブと思われるモデレーターは頻繁に削除します。 削除すると、次のようなメッセージが送信されます。
+Anyone is welcome in the [contributors room on our chat server](https://discord.gg/PRyKn3Vbay). It is the designated chat room for moderators and other campers who contribute to our community in any number of ways, including through study groups.
+
+We assume contributors will read anything in this room that directly mentions them with an **@username**. Everything else is optional, but feel free to read anything anyone posts in there and interact.
+
+## Dealing with Solicitors
+
+You may be approached by organizations who want to partner or co-brand with freeCodeCamp somehow. Once you realize that this is what they're after, **please stop talking to them** and tell them to email `team[at]freecodecamp.org`.
+
+We get proposals like this all the time, and the staff are in the best position to judge whether such a relationship will be worth it for our community (and it rarely is).
+
+## Dealing with (Mental) Health Inquiries
+
+You may come across situations where users seek medical advice or are dealing with mental health issues and are looking for support.
+
+As a matter of policy, you should avoid talking privately about these matters. Should the situation reflect back to freeCodeCamp, we want to have the conversation(s) on record. Make it clear that we are not medical professionals and that you encourage the user to find professional help.
+
+As difficult as it sometimes can be, avoid giving any tips or advice and rather point the user in the direction of seeking professional help!
+
+If this happens on our chat server: Create a private channel for the user and the moderator team. This can be done with the bot's `private` command.
+
+- The user is guaranteed some privacy.
+- Public chat is no longer disrupted.
+- Other team members can pitch in, should you feel uncomfortable dealing with the situation yourself.
+
+Helpful URLs:
+
+http://suicide.org/international-suicide-hotlines.html
+
+## A Note on Free Speech
+
+Sometimes people will defend something offensive or incendiary that they said as "free speech."
+
+This XKCD comic summarizes perfectly most communities' thoughts on free speech.
+
+<div align="center"><img src='./images/github/xkcd-free-speech.png' width="400" height="400" /></div>
+
+Thanks for reading this, and thanks for helping the developer community!
+
+## Reply Templates
+
+These are some of the standard reply templates that you may use while reviewing pull requests and triaging issues/pull requests.
+
+> You can make your own saved replies with GitHub's built-in [saved replies](https://github.com/settings/replies/) feature or use the ones below.
+
+### Thank You
 
 ```markdown
-最近アクティブではないモデレーターの方にお送りしている通知メッセージです。最近の活動が少なくなっているようですので、モデレーターチームから削除させていだきます。 これまでのご支援に深く感謝いたします。
-
-私たちの理解が誤っている場合、再度貢献できる状況になった場合には、このメッセージに返信する形でどうぞお知らせください。
+Thank you for your contribution to the page! 👍
+We are happy to accept these changes and look forward to future contributions. 🎉
 ```
 
-## Contributors ルームの仕組み
+### Thank you and congrats
 
-[チャットサーバーの contributors ルーム](https://chat.freecodecamp.org/channel/contributors) は、どなたでも歓迎します。 学習グループなど、様々な方法でコミュニティに貢献しているモデレーターやキャンパーのための専用のチャットルームです。
-
-`@username` で直接メンションされているものを、コントリビューターがこのルームで読むことを想定しています。 他はすべて任意ですが、自由に誰かの投稿を読んだり交流したりしてください。
-
-## 勧誘者への対応
-
-freeCodeCamp と連携またはブランド提携したい団体から、アプローチを受ける場合があります。 そのようなことを求めていると気が付いたら、**その団体と話しをするのは止めて**、`team[at]freecodecamp.org` にメールを書くように伝えてください。
-
-私たちは、いつもこのような提案を受けています。スタッフは、そのような関係が私たちのコミュニティにとって価値があるのかどうか (ほとんどの場合そうではありません) を判断するのに最適な立場にあります。
-
-## (メンタル) ヘルスに関する問い合わせへの対応
-
-ユーザーが医療アドバイスを求めたり、メンタルヘルスの問題でサポートを求めたりする状況に遭遇することがあります。
-
-ポリシー上、これらの問題について個人的に話すことは避けるべきです。 もしその状況が freeCodeCamp に反映された場合、私たちはその会話を記録します。 私たちは医療の専門家ではないこと、そしてユーザー自身で専門的な支援を見つけることを推奨していることを明確にしてください。
-
-難しい場合もありますが、ユーザーを専門家の支援の方向に向けてください。ヒントやアドバイスを与えることを避けてください！
-
-これが、チャットサーバーで発生した場合は、ユーザーとモデレーターチームのプライベートチャンネルを作成してください。 bot の `private` コマンドで作成することができます。
-
-- ユーザーはプライバシーを保証されています。
-- パブリックチャットはもう中断されません
-- 対応に気まずさを感じる場合は、他のチームメンバーが支援することができます。
-
-参考URL:
-
-http://www.suicide.org/international-suicide-hotlines.html
-
-## 言論の自由に関する注意点
-
-人々は、「言論の自由」として述べた攻撃的または扇情的な何かを擁護しようとする場合があります。
-
-この XKCD 漫画は、言論の自由に対するコミュニティでの考えを要約しています。 誰かが「言論の自由」という名目で何かを擁護する場合、これをその人たちに送ってください。
-
-<div align="center"><img src='https://aws1.discourse-cdn.com/freecodecamp/original/3X/4/3/43a8b2eafe4c8622e02838f66f1dc6227de32c70.png' width="400" height="400" /></div>
-
-お読みいただきありがとうございます。また、開発者コミュニティを支援してくださってありがとうございます！
-
-## 返信テンプレート
-
-以下は、プルリクエストをレビューしたり、問題やプルリクエストをトリアージしたりする際に使用できる標準的な返信テンプレートです。
-
-> GitHub のビルトインの [**Saved replies**](https://github.com/settings/replies/) 機能を使用して自分で作成するか、以下の機能を使用することができます。
-
-### お礼
+> For thanking and encouraging first-time contributors.
 
 ```markdown
-このページに貢献していただきありがとうございます！ 👍
-喜んでこれらの変更を承認いたします。今後の貢献に期待しています。 🎉
+Hi @username. Congrats on your first pull request (PR)! 🎉
+
+Thank you for your contribution to the page! 👍
+We are happy to accept these changes and look forward to future contributions. 📝
 ```
 
-### お礼と祝福
-
-> 新規コントリビューターへの感謝と励まし
+### Build Error
 
 ```markdown
-@username さん、こんにちは。 最初のプルリクエスト (PR) おめでとうございます！ 🎉
+Hey @username
 
-このページに貢献していただきありがとうございます！ 👍
-喜んでこれらの変更を承認いたします。今後の貢献に期待しています。 📝
-```
+We would love to be able to merge your changes but it looks like there is an error with the CI build. ⚠️
 
-### ビルドエラー
-
-```markdown
-@username さん、こんにちは。
-
-変更をマージしたいのですが、CI ビルドでエラーが発生しています。 ⚠️
-
-この問題が解決すれば、PR を確認してマージすることができます。 😊
+Once you resolve these issues, we will be able to review your PR and merge it. 😊
 
 ---
 
-CI ビルドをローカルで実行する手順については、[貢献ガイドライン](how-to-work-on-coding-challenges.md#testing-challenges) をご参照ください。 ✅
+Feel free to reference the [contributing guidelines](how-to-work-on-coding-challenges.md#testing-challenges) for instructions on running the CI build locally. ✅
 ```
 
-### フォークの同期
+### Syncing Fork
 
-> PR が、最新の `main` ブランチで更新されていない場合
+> When PR is not up to date with the `main` branch.
 
 ````markdown
-@username さん、こんにちは。
+Hey @username
 
-変更をマージしたいのですが、ブランチが最新ではないようです。 ⚠️
+We would love to be able to merge your changes, but it looks like the branch is not up to date. ⚠️
 
-このエラーを解決するには、 `freeCodeCamp/freeCodeCamp` リポジトリの `main` ブランチから最新の変更を同期する必要があります。
+To resolve this error, you will have to sync the latest changes from the `main` branch of the `freeCodeCamp/freeCodeCamp` repo.
 
-コマンドラインを使用すると、次の 3 つの簡単な手順でこれを実行できます。
+Using the command line, you can do this in three easy steps:
 
 ```bash
 git remote add upstream git://github.com/freeCodeCamp/freeCodeCamp.git
@@ -411,129 +404,178 @@ git fetch upstream
 git pull upstream main
 ````
 
-GUI を使用している場合は、単純に `Add a new remote...` を使用するとともに、上記の `git://github.com/freeCodeCamp/freeCodeCamp.git` のリンクを使用してください。
+If you're using a GUI, you can simply `Add a new remote...` and use the link `git://github.com/freeCodeCamp/freeCodeCamp.git` from above.
 
-フォークを同期してビルドに合格すると、PR をレビューしてマージすることができます。 😊
+Once you sync your fork and pass the build, we will be able to review your PR and merge it. 😊
 
 ---
 
-アップストリームリポジトリでフォークを最新状態に保つ方法については、GitHub 上の [フォークの同期](https://help.github.com/articles/syncing-a-fork/) 記事を参照してください。 🔄
+Feel free to reference the ["Syncing a fork"](https://help.github.com/articles/syncing-a-fork/) article on GitHub for more insight on how to keep your fork up-to-date with the upstream repository. 🔄
 ````
 
-### マージ競合
+### Merge Conflicts
 
-> PR に解決すべきマージ競合がある場合
+> When PR has merge conflicts that need to be resolved.¹
 
 ```markdown
-@username さん、こんにちは。
+Hey @username
 
-変更をマージしたいのですが、マージが競合しているようです。 ⚠️
+We would love to be able to merge your changes, but it looks like you have some merge conflicts. ⚠️
 
-この問題が解決すれば、PR を確認してマージすることができます。 😊
+Once you resolve these conflicts, we will be able to review your PR and merge it. 😊
 
 ---
 
-マージ競合プロセスに慣れていない場合は、GitHub のガイド の [「Resolving a merge conflict」] をご覧ください　(https://help.github.com/articles/resolving-a-merge-conflict-on-github/)。 🔍
+If you're not familiar with the merge conflict process, feel free to look over GitHub's guide on ["Resolving a merge conflict"](https://help.github.com/articles/resolving-a-merge-conflict-on-github/). 🔍️
 
-また、GitHub で PR を作成する際に、変更に関する簡単な説明を記述することをお勧めします。 📝
+Also, it's good practice on GitHub to write a brief description of your changes when creating a PR. 📝
 ````
 
-¹ 新規コントリビューターにマージ競合が発生した場合、メンテナーがその競合を解決します。
+¹ If a first-time-contributor has a merge conflict, maintainers will resolve the conflict for them.
 
-### 重複
+### Duplicate
 
-> PR が反復または重複している場合
+> When PR is repetitive or a duplicate.
 
 ```markdown
-@username さん
+Hey @username
 
-この PR は、既存の PR <#number> と同様の変更を行っているようです。 そのため、重複としてこの PR をクローズします。
+This PR seems to make similar changes as the existing PR <#number>. As such, we are going to close this as a duplicate.
 
-この PR を拡張するために追加変更したい場合は、自由にコミットをプッシュし、この PR を再オープンするようリクエストしてください。
+If you feel you have additional changes to expand upon this PR, please feel free to push your commits and request this PR be reopened.
 
-よろしくお願いいたします！ 😊
+Thanks again! 😊
 
 ---
 
-ご質問がありましたら、[フォーラムの 'Contributors' カテゴリ](https://forum.freecodecamp.org/c/contributors) または [contributors チャットルーム] (https://chat.freecodecamp.org/channel/contributors) までお気軽にお問合せください。
+If you have any questions, feel free to ask questions on the ["Contributors" category on our forum](https://forum.freecodecamp.org/c/contributors) or [the contributors chat room](https://discord.gg/PRyKn3Vbay).
 ```
 
-### 無効なプルリクエストをクローズする
+### Closing Invalid Pull Requests
 
-> PR が無効な場合
+> When PR is invalid.
 
 ```markdown
-@username さん、こんにちは。
+Hey @username
 
-プルリクエストをオープンしていただきありがとうございました。
+Thank you for opening this pull request.
 
-プルリクエストをレビューしました結果、マージしないことを決定しましたのでお知らせいたします。 今後、またプルリクエストを作成していただけることを期待しております。
+This is a standard message notifying you that we've reviewed your pull request and have decided not to merge it. We would welcome future pull requests from you.
 
-ご理解のほどよろしくお願いいたします。
+Thank you and happy coding.
 ```
 
-> PR が外部リソースへのリンクを追加している場合
+> When PR adds links to external resources.
 
 ```markdown
-プルリクエストを作成していただきありがとうございました。
+Thank you for your pull request.
 
-しかしながら、このプルリクエストをクローズさせていただきます。 [フォーラムトピック](https://forum.freecodecamp.org/new-topic?category=Contributors&title=&body=**What%20is%20your%20hint%20or%20solution%20suggestion%3F**%0A%0A%0A%0A%0A**Challenge%3A**%0A%0A%0A**Link%20to%20the%20challenge%3A**) に投稿されているチャレンジの該当ガイドを追加するためのリンクおよびその他詳細を提案してください。
+We are closing this pull request. Please suggest links and other details to add the challenge's corresponding guide post through [a forum topic](https://forum.freecodecamp.org/new-topic?category=Contributors&title=&body=**What%20is%20your%20hint%20or%20solution%20suggestion%3F**%0A%0A%0A%0A%0A**Challenge%3A**%0A%0A%0A**Link%20to%20the%20challenge%3A**) instead.
 
-この Issue をクローズすることが誤りであると思われる場合は、再オープンをリクエストして説明を追加してください。 ご理解のほどよろしくお願いいたします。
+If you think we're wrong in closing this issue, please request for it to be reopened and add further clarification. Thank you and happy coding.
 ```
 
-### 無効な Issue をクローズする
-
-> Issue がキャンパーのコードに関連する場合
+### Adding Comment About Newbie Mistakes
 
 ```markdown
-この問題を報告していただきありがとうございます。
+Hi there, 
 
-しかしながら、これは支援リクエストであるように思われますのでお知らせいたします。 ここで支援を求めるのではなく、freeCodeCamp のチャレンジにある **"Get Help"** ボタンをクリックして **"Ask for help"** オプションを選択してください。フォーラムの右側に質問を作成することができます。 フォーラムのボランティアが通常数時間以内に質問に対して回答し、コードもしくはチャレンジテストに問題があるかどうかを判断します。
+Thanks for creating this pull request.
 
-フォーラムメンバーによりコードに問題がないと判断された場合は、この問題を再オープンするようにリクエストすることができます。
+Please ensure you follow the PR checklist and not just tick things off; otherwise, we won't take you seriously. Respect the requirements to earn the respect of your fellow maintainers. You will also save everyone time :)
 
-ご理解のほどよろしくお願いいたします。
+Since you are new here, please slow down and read our [contributing guidelines](https://contribute.freecodecamp.org), as we see that you may still need to catch up on a few things.
+
+<details>
+<summary>Here are some examples (expand)</summary>
+
+1. Do not edit files directly on GitHub – while you can, it's not a good idea. 
+
+   Typos and formatting errors can break the tests.
+
+2. Use the correct way to link issues. 
+
+   Add the issue number only in the description of the PR by updating the `XXXXXX`. Do not just add issue numbers everywhere and anywhere you feel like.
+
+4. Keep mentions and review requests to a minimum. 
+
+   We understand you are excited about contributing, and our maintainers will get back to you when they can.
+
+5. Do not work directly off your `main` branch. 
+
+   You can always create a new branch for the changes you are working on. That way, you can sync change to your PR branch as the main repository moves ahead while your PR is waiting in the merge queue.
+
+</details>
+
+Don't worry. You don't have to close this PR. Feel free to ask specific queries on improving your PR here; someone will guide you.
+
+We are happy you are excited to contribute and appreciate you taking the time to help us. Looking forward to more contributions!
+
+Happy Contributing.
 ```
 
-> Issue が以前の Issue と重複している場合
+### Closing Invalid Issues
+
+> When an issue relates to the camper's code.
 
 ```markdown
-問題を報告していただきありがとうございます。
+Thank you for reporting this issue.
 
-この問題は、#XXXXX と非常によく似ているので、重複としてクローズすることをお知らせいたします。
+This is a standard message notifying you that this issue seems to be a request for help. Instead of asking for help here, please click the **"Get Help"** button on the challenge on freeCodeCamp and choose the **"Ask for help"** option, which will help you create a question in the right part of the forum. Volunteers on the forum usually respond to questions within a few hours and can help determine if there is an issue with your code or the challenge's tests.
 
-この問題をクローズすることが誤りであると思われる場合は、再オープンをリクエストし説明を追加してください。 ご理解のほどよろしくお願いいたします。
+If the forum members determine there is nothing wrong with your code, you can request this issue to be reopened.
+
+Thank you and happy coding.
 ```
 
-> Issue がステージングで修正された場合
+> When an issue is duplicate of an earlier issue.
 
 ```markdown
-この問題を報告していただきありがとうございます。
+Thank you for reporting this issue.
 
-言及された問題は本番環境に存在していますが、ステージングで既に修正されていますのでお知らせいいたします。 これは、次回ステージングブランチを本番環境にプッシュする際に、この問題を修正する必要があることを意味します。 そのため、この問題はクローズいたします。
+This is a standard message notifying you that this issue appears to be very similar to issue #XXXXX, so we are closing it as a duplicate.
 
-この問題をクローズすることが誤りであると思われる場合は、再オープンをリクエストし説明を追加してください。 ご理解のほどよろしくお願いいたします。
+If you think we're wrong in closing this issue, please request for it to be reopened and add further clarification. Thank you and happy coding.
 ```
 
-### 初回者用の Issue
-
-> Issue が新規コードコントリビューターの対象となる場合
+> When an issue is fixed in staging.
 
 ```markdown
-この問題をオープンしていただきありがとうございます。
+Thank you for reporting this issue.
 
-これは、このリポジトリへの「新規」コードコントリビューターによって修正できるようです。 修正するために調べるべきファイルは次のとおりです:
+This is a standard message notifying you that the problem you mentioned here is present in production, but that it has already been fixed in staging. This means that the next time we push our staging branch to production, this problem should be fixed. Because of this, we're closing this issue.
 
-ファイルのリスト:
+If you think we're wrong in closing this issue, please request for it to be reopened and add further clarification. Thank you and happy coding.
+```
+
+### `first timer only` Issues
+
+> When an issue is deemed to be eligible for first-time code contributors.
+
+```markdown
+Thanks for opening this issue.
+
+This looks like something that can be fixed by "first-time" code contributors to this repository. Here are the files that you should be looking at to work on a fix:
+
+List of files:
 
 1. ...
 2. ...
 3. ...
 
-[貢献に関するガイドライン](https://contribute.freecodecamp.org/#/) を必ずお読みください。私たちは、ガイドの指示に従ってコントリビューターに優先順位を付けます。 [チャットルーム](https://chat.freecodecamp.org/channel/contributors) もしくは [フォーラム](https://forum.freecodecamp.org/c/contributors/3) に参加してください。貢献するのに支援が必要な場合、モデレーターがガイドいたします。
+Please make sure you read our [guidelines for contributing](https://contribute.freecodecamp.org/#/), we prioritize contributors following the instructions in our guides. Join us in our [chat room](https://discord.gg/PRyKn3Vbay) or our [forum](https://forum.freecodecamp.org/c/contributors/3) if you need help contributing; our moderators will guide you through this.
 
-複数のプルリクエストを受け取ることもあります。 私たちは通常、最も質の高い貢献を受け入れ、その後に最初の貢献を受け入れます。
+Sometimes we may get more than one pull request. We typically accept the most quality contribution followed by the one that is made first.
 
-貢献をお楽しみください。
+Happy contributing.
+```
+
+### Requests for Assignment
+
+```md
+We typically do not assign issues. Instead, we accept the first pull request that comprehensively solves the issue.
+
+Issues labelled with `help wanted` or `first timers only` are open for contributions.
+
+Please make sure you read [our guidelines for contributing](https://contribute.freecodecamp.org/#/). We prioritize contributors following the instructions in our guide. Join us in [our chat room](https://discord.gg/PRyKn3Vbay) or [the forum](https://forum.freecodecamp.org/c/contributors/3) if you need help contributing - our community will be happy to assist you.
 ```

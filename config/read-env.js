@@ -1,4 +1,5 @@
 const path = require('path');
+const { execSync } = require('child_process');
 
 const envPath = path.resolve(__dirname, '../.env');
 const { error } = require('dotenv').config({ path: envPath });
@@ -31,8 +32,10 @@ const {
   PAYPAL_CLIENT_ID: paypalClientId,
   PATREON_CLIENT_ID: patreonClientId,
   DEPLOYMENT_ENV: deploymentEnv,
+  SENTRY_CLIENT_DSN: sentryClientDSN,
   SHOW_UPCOMING_CHANGES: showUpcomingChanges,
-  SHOW_NEW_CURRICULUM: showNewCurriculum
+  SHOW_NEW_CURRICULUM: showNewCurriculum,
+  GROWTHBOOK_URI: growthbookUri
 } = process.env;
 
 const locations = {
@@ -44,6 +47,10 @@ const locations = {
     ? 'https://coderadio.freecodecamp.org'
     : radioLocation
 };
+
+// This is used to identify the current deployment and is trimmed to remove
+// the trailing newline.
+const gitHash = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
 
 module.exports = Object.assign(locations, {
   clientLocale,
@@ -71,6 +78,15 @@ module.exports = Object.assign(locations, {
     !patreonClientId || patreonClientId === 'id_from_patreon_dashboard'
       ? null
       : patreonClientId,
+  sentryClientDSN:
+    !sentryClientDSN || sentryClientDSN === 'dsn_from_sentry_dashboard'
+      ? null
+      : sentryClientDSN,
   showUpcomingChanges: showUpcomingChanges === 'true',
-  showNewCurriculum: showNewCurriculum === 'true'
+  showNewCurriculum: showNewCurriculum === 'true',
+  growthbookUri:
+    !growthbookUri || growthbookUri === 'api_URI_from_Growthbook_dashboard'
+      ? null
+      : growthbookUri,
+  gitHash
 });

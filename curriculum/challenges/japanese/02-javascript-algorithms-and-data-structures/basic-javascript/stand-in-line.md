@@ -11,6 +11,8 @@ dashedName: stand-in-line
 
 コンピューターサイエンスでは、アイテムを順に保存する抽象的な<dfn>データ構造</dfn>として<dfn>キュー</dfn>を使用します。 新しいアイテムはキューの末尾に追加され、古いアイテムはキューの先頭から削除されます。
 
+# --instructions--
+
 配列 (`arr`) と数値 (`item`) を引数として取る関数 `nextInLine` を記述してください。
 
 配列の末尾に数値を追加し、それから配列の先頭の要素を削除してください。
@@ -96,7 +98,7 @@ function nextInLine(arr, item) {
 }
 
 // Setup
-const testArr = [1, 2, 3, 4, 5];
+let testArr = [1, 2, 3, 4, 5];
 
 // Display code
 console.log("Before: " + JSON.stringify(testArr));
@@ -107,7 +109,7 @@ console.log("After: " + JSON.stringify(testArr));
 # --solutions--
 
 ```js
-const testArr = [1, 2, 3, 4, 5];
+let testArr = [1, 2, 3, 4, 5];
 
 function nextInLine(arr, item) {
     arr.push(item);
